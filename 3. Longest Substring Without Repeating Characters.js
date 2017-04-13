@@ -25,7 +25,6 @@ var lengthOfLongestSubstring = function(s) {
             substr = substr + s[end];
             end++;
             max = Math.max(max, end-start);
-            
         }        
         else{ // if substr contain, drop top character
             substr = substr.replace(s[start],'');
