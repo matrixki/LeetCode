@@ -17,3 +17,25 @@ Note:
 The input is assumed to be a 32-bit signed integer. Your function should return 0 when the reversed integer overflows.
 */
 
+/**
+ * @param {number} x
+ * @return {number}
+ */
+var reverse = function(x) {
+    // math question
+    var result = 0;
+    var abs = Math.abs(x);
+    var nFlag = x < 0 ? true: false;
+    var INT_MAX = Math.pow(2,31)-1;
+
+    while(abs !== 0){
+        result = result*10 + abs%10;
+        abs = Math.floor(abs/10);
+        console.log(result);
+    }  
+    result = nFlag? result*(-1) : result;
+    // handle overflow
+    if(result>INT_MAX || result<-1*(INT_MAX+1) ){ return 0; }
+
+    return result;
+};
