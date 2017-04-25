@@ -65,5 +65,5 @@ var isPalindrome = function(head) {
         head = head.next;
         rList = rList.next;
     }
-    return true; 
+    return true;
 };
