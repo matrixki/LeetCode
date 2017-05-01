@@ -5,3 +5,34 @@ Example
 Given: 1 --> 2 --> 6 --> 3 --> 4 --> 5 --> 6, val = 6
 Return: 1 --> 2 --> 3 --> 4 --> 5
 */
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} val
+ * @return {ListNode}
+ */
+var removeElements = function(head, val) {
+    // make a node for new list and one to save previous state
+    var node = new ListNode(0);
+    var prev = node;
+    node.next = head;
+    while(head !== null){
+        if( head.val === val ){
+            // do a removal
+            prev.next = head.next;
+            head = head.next;
+        }
+        else{
+            prev = head;
+            head = head.next;
+        }
+    }
+    return node.next;
+};
