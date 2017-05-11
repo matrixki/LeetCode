@@ -15,20 +15,15 @@ Output: 5
  */
 var countSegments = function(s) {
     var count =0, flag=false;
-    // remove leading, trailing space
     s = s.trim();
     for(var i=0;i<s.length;i++){
-    	// condition: all spaces
+        // check if no space in the str
         if( s[i] !== ' ' ){
             flag = true;
         }
-        if( s[i] !== ' ' && s[i+1] === ' ' ){
+        if( s[i-1] !== ' ' && s[i] === ' ' ){
             count++;
         }
-        // reach the end
-        if( i=== (s.length-1) && i > 1 ){
-            break;
-        }        
     }
     return flag?(count+1):0;
 };
