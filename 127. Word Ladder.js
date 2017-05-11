@@ -29,37 +29,31 @@ The wordList parameter had been changed to a list of strings (instead of a set o
  * @return {number}
  */
 var ladderLength = function(beginWord, endWord, wordList) {
-    var queue = [], lookup = wordList;
-    var found = false;
-    if(beginWord ===endWord){ return 1; }
+
+    var queue = [];
     queue.push([ beginWord, 1 ]);
     //Breadth First Search
     while(queue.length >0){
-        // console.log(queue);
         var obj = queue.shift();
         var curr = obj[0];
         var length = obj[1];
         if( curr === endWord ){
-            found = true;
             return length;
         }
         // only change one character
         for( var i=0;i<curr.length;i++ ){
-            var newWord = curr;
-            newWord = newWord.split('');
             for(var j=0;j<26;j++){
-                newWord[i] = String.fromCharCode(97+j);
-                var newStr = newWord.join('');
-                if( lookup.indexOf( newStr ) !== -1 ){
-                    // console.log(newStr); 
+                // replace one character at index i
+                var newStr = curr.substr(0,i)+String.fromCharCode(97+j)+curr.substring(i+1);
+                // check if exists in the lookup
+                var index = wordList.indexOf( newStr );
+                if( index !== -1 ){
                     queue.push( [ newStr, length+1 ] );
-                    var index = lookup.indexOf( newStr );
-                    lookup.splice( index, 1 );
+                    wordList.splice( index, 1 );
                 }
             }
         }
     }
-    if(!found){
-        return 0;
-    }
+    return 0;
+    
 };
