@@ -20,7 +20,7 @@ If there is no valid move, return an empty list [].
 var generatePossibleNextMoves = function(s) {
     var result = [];
     for(var i=0;i<s.length-1;i++){
-        if( s[i] === '+' && s[i+1] === '+' && i+1 < s.length ){
+        if( s[i] === '+' && s[i+1] === '+' ){
             var str = s.substr(0,i) + '--' + s.substring(i+2);  
             result.push( str );
         }
