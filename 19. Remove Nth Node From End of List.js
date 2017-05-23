@@ -52,6 +52,25 @@ var removeNthFromEnd = function(head, n) {
         pointer2 = pointer2.next;
         count++;
     }
-    return newNode.next;
+    return newNode.next; 
+};
+
+/* in one pass */
+var removeNthFromEnd = function(head, n) {
+    var slow = new ListNode();
+    var fast = new ListNode();
+    var newNode = new ListNode();
     
+    newNode = slow;
+    slow.next = head;
+    fast = head;
+    for(var i=0;i<n;i++){
+        fast = fast.next;
+    }
+    while(fast!==null){
+        slow = slow.next;
+        fast = fast.next;
+    }
+    slow.next = slow.next.next;
+    return newNode.next;
 };
