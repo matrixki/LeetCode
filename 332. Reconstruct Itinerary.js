@@ -19,46 +19,43 @@ Another possible reconstruction is ["JFK","SFO","ATL","JFK","ATL","SFO"]. But it
  * @return {string[]}
  */
 var findItinerary = function(tickets) {
-    var result = [], notzone = [];
-    var dict = tickets;
-    var target = 'JFK';
-    var toDrop = [];
-    while(dict.length>0){
-        var noResult = true;
-        for(var i=0;i<dict.length;i++){
-            var curr = dict[i];
-            if(curr[0]=== target && notzone.indexOf(curr[1])<0){
-                if( toDrop.length === 0 ){
-                    toDrop = curr;
-                }
-                else{
-                    if( curr[1] < toDrop[1] ){
-                        toDrop = curr;
-                    }                    
-                }
-                noResult = false;
-                notzone = [];
-            }
-            if(toDrop.length > 0 && !noResult){
-                var index = dict.indexOf(toDrop);
-                var drop = dict.splice(index,1);
-                drop = drop[0];
-                if( result.length === 0 ){
-                    result.push(drop[0]);
-                    result.push(drop[1]);                    
-                }
-                else{
-                    result.push(drop[1]);
-                }
-                target = drop[1];
-                break;                
-            }
+
+    var length = tickets.length;
+    
+    var map = {
+        JFK: []
+    };
+    
+    var result = [];
+    
+    for(var i=0; i<length; i++){
+        
+        var from = tickets[i][0];
+        var to = tickets[i][1];
+        
+        if(!map[from]){
+            map[from] = [];
+            map[from].push(to);
+        } else {
+            map[from].push(to);
         }
-        if( noResult ){
-            notzone.push(target);
-            dict = tickets;
-            result = [];
-        }        
     }
+    
+    // sort map in lexical order
+    for(var prop in map){
+        map[prop].sort();
+    }    
+    
+    dfs("JFK");    // dfs
+    
+    function dfs(from){        
+        var tos = map[from];  
+        while(tos && tos.length > 0){
+            dfs(tos.shift()); 
+        }
+        result.unshift(from);
+    }
+    
     return result;
+
 };
