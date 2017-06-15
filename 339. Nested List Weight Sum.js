@@ -48,7 +48,6 @@ var depthSum = function(nestedList) {
         for(var i=0;i<list.length;i++){
             var curr = list[i];
             if(curr.isInteger()){
-                console.log(depth);
                 result += curr.getInteger()*depth;        
             }
             else{
