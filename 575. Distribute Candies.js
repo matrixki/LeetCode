@@ -24,7 +24,7 @@ The number in given array is in range [-100,000, 100,000].
  * @return {number}
  */
 var distributeCandies = function(candies) {
-    var total = candies.length
+    var total = candies.length;
     var lookup = new Set();
     for(var i=0;i<total;i++){
         if( ! lookup.has( candies[i] ) ){
