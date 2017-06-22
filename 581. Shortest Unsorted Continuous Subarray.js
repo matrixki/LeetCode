@@ -13,3 +13,32 @@ The input array may contain duplicates, so ascending order here means <=.
 */
 
 
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findUnsortedSubarray = function(nums) {
+    var length = nums.length;
+    var min = nums[length-1];
+    var max = nums[0];
+    var start = -1;
+    var end = -2;
+    
+    for(var i=1;i<length;i++){
+        max = Math.max(max, nums[i]);
+        min = Math.min(min, nums[length-1-i]);
+        if( nums[i] < max ){
+            end = i;
+        }
+        if( nums[length-1-i] > min ){
+            start = length-1-i;
+        }
+    }
+    if( start < end < 0 ){
+        return 0;
+    }
+    else{
+        return end-start+1;    
+    }
+    
+};
