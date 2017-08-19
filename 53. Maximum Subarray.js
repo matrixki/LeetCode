@@ -9,3 +9,16 @@ click to show more practice.
 More practice:
 If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
 */
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxSubArray = function(nums) {
+    var maxSoFar=nums[0], maxEndingHere=nums[0];
+    for (var i=1;i<nums.length;++i){
+    	maxEndingHere= Math.max(maxEndingHere+nums[i],nums[i]);
+    	maxSoFar=Math.max(maxSoFar, maxEndingHere);	
+    }
+    return maxSoFar;
+};
