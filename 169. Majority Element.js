@@ -32,7 +32,7 @@ var majorityElement = function(nums) {
         }
     }
 };
-//only for majority solution
+//only for majority solution, use minus value to caculate total count
 var majorityElement = function(nums) {
     var major = nums[0], count = 1;
     for(var i=1;i<nums.length;i++){
