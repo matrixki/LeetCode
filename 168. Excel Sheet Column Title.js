@@ -19,29 +19,15 @@ Special thanks to @ifanchu for adding this problem and creating all test cases.
  * @return {string}
  */
 var convertToTitle = function(n) {
-    let dict = [ 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' ];
+    var dict =['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' ];
     var result = '';
     if( n<=26 ){
         return dict[n-1];
     }
-    var power = 1;
-    while( n>0 ){
-        if(Math.pow(26,power) < n){
-            power++;
-        }
-        else{
-            var counter = 0;
-            while(n>Math.pow(26,power-1)){
-                n -= Math.pow(26,power-1); 
-                counter++;
-            }
-            result += dict[counter-1];
-            power = 1;
-        }
-        if( n <= 26){
-            result += dict[n-1];
-            break;
-        }
+    while( n ){
+        var val = (n-1)%26;
+        result = dict[val] + result;
+        n = Math.floor( (n-1) /26 );
     }
-    return result;
+    return result;    
 };
