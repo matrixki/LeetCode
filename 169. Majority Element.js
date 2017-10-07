@@ -12,7 +12,7 @@ Special thanks to @ts for adding this problem and creating all test cases.
  * @return {number}
  */
 
-// map solution: to keep all count if ask for second largest majority
+// map solution: to keep all count if need to know the correct count
 var majorityElement = function(nums) {
     var lookup = new Map();
     if( nums.length === 1 ){
