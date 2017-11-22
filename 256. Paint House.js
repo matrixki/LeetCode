@@ -23,3 +23,5 @@ var minCost = function(costs) {
     }
     return Math.min(costs[len-1][0],costs[len-1][1],costs[len-1][2]);
 };
+
+//tag: Linkedin
