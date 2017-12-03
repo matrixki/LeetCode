@@ -34,4 +34,13 @@ var missingNumber = function(nums) {
     return lookup.length;
 };
 
+//math solution
+var missingNumber = function(nums) {
+    var sum =0, len=nums.length;
+    for(var i=0;i<len;i++){
+        sum+=nums[i];
+    }        
+    return (1+len)*len/2 - sum;
+}
+
 //tags: Microsoft, Bloomberg
