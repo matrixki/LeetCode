@@ -26,3 +26,23 @@ Return 3. The paths that sum to 8 are:
 3. -3 -> 11
 */
 
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} sum
+ * @return {number}
+ */
+var pathSum = function(root, sum) {
+    if(!root){ return 0; }
+    return goDeeper(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
+    function goDeeper(node, sum){
+        if(!node){ return 0; }
+        return ( node.val === sum ? 1:0 )+goDeeper(node.left, sum-node.val)+goDeeper(node.right, sum-node.val);
+    }  
+};
