@@ -21,6 +21,7 @@ The two boomerangs are [[1,0],[0,0],[2,0]] and [[1,0],[2,0],[0,0]]
 var numberOfBoomerangs = function(points) {
     var result = 0;
     var lookup = {};
+    
     for(var i=0, len=points.length;i<len;i++){
         for(var j=0;j<len;j++){
             if( i===j ){ continue; }
