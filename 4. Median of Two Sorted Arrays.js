@@ -56,3 +56,5 @@ var findMedianSortedArrays = function(nums1, nums2) {
         return numArray[Math.floor(numArray.length/2)];
     }
 };
+
+//tags: Google, Microsoft, Apple, Zenefits, Yahoo, Adobe, Dropbox
