@@ -33,3 +33,5 @@ var isValid = function(s) {
     }
     return stack.length === 0;
 };
+
+//tags: Google, Facebook, Microsoft, Amazon, Bloomberg, Twitter, Airbnb, Zenefits
