@@ -30,8 +30,8 @@ var groupAnagrams = function(strs) {
             map.set( sortedStr, [ str ] );
         }
     }
-    for( var val of map.values() ){
-        result.push( val );
+    for( var value of map.values() ){
+        result.push( value );
     }
     return result;
 };
