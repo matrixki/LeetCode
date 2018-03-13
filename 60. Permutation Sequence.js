@@ -26,7 +26,6 @@ var getPermutation = function(n, k) {
         nums.push(i.toString());
         factorial[i] = factorial[i-1]*i;
     }
-    console.log(factorial);
     var result = '';
     k--;
     while( n > 0 ){
