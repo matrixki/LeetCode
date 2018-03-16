@@ -61,4 +61,27 @@ var uniquePathsWithObstacles = function(obstacleGrid) {
     return obstacleGrid[m-1][n-1] !== 1 ? result[m-1][n-1] : 0;    
 };
 
+// one dimensional DP
+var uniquePathsWithObstacles = function(obstacleGrid) {
+    var m = obstacleGrid.length;
+    var n = obstacleGrid[0].length;
+    // Dynamic Programming
+    var result = [];
+    for( var i=0;i<n;i++ ){
+        result.push(0);
+    }
+    result[0] = 1;
+    for( var i=0;i<m;i++ ){
+        for( var j=0;j<n;j++ ){
+            if( obstacleGrid[i][j] === 1 ){
+                result[j] = 0;
+            }                
+            else if(j>0){
+                result[j] += result[j-1];
+            }
+        }
+    }
+    return result[n-1];    
+};
+
 //tags: Bloomberg
