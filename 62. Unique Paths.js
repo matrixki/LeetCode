@@ -32,8 +32,7 @@ var uniquePaths = function(m, n) {
             }
         }
     }
-    return result[m-1][n-1];
-    
+    return result[m-1][n-1];  
 };
 
 // one dimensional DP, lower memory space
