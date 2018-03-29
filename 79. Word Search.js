@@ -23,61 +23,33 @@ word = "ABCB", -> returns false.
  */
 var exist = function(board, word) {
     if( !word ){ return false; }
-    var m = board.length, n = board[0].length, find = false;
+    var m = board.length, n = board[0].length;
     // find the first letter
     for( var i=0;i<m;i++ ){
         for( var j=0;j<n;j++ ){
             if( board[i][j] === word[0] ){
-                searchWord( i, j, word.slice(1, word.length), [ [i,j] ] );
+                if(searchWord( i, j, 0, word, board )){
+                    return true;
+                }
             }
         }
     }
-    return find;
+    return false;
     
-    function searchWord( m, n, word, lookup ){
-        // console.log(lookup);
-        if( word.length === 0){
-            find = true;
+    function searchWord( m, n, index, word, board ){
+        if( index === word.length){
+            return true;
         }
-        // console.log('current: '+word);
-        //up
-        if( m-1>=0 && board[m-1][n] === word[0] && !checkExist(m-1,n,lookup) ){
-            // console.log('up');
-            lookup.push( [m-1,n] );
-            searchWord( m-1, n, word.slice(1,word.length), lookup.concat() );
-            lookup.pop();
+        if( m<0 || m>=board.length || n<0 || n>=board[0].length || board[m][n] !== word[index]){
+            return false;   
         }
-        //down
-        if( m+1 <= board.length-1 && board[m+1][n] === word[0] && !checkExist(m+1,n,lookup) ){
-            // console.log('down');
-            lookup.push( [m+1,n] );
-            searchWord( m+1, n, word.slice(1,word.length), lookup.concat() );
-            lookup.pop();
-        }
-        //right
-        if( n+1<= board[0].length-1 && board[m][n+1] === word[0] && !checkExist(m,n+1,lookup) ){
-            // console.log('right');
-            lookup.push([m,n+1]);
-            searchWord( m, n+1, word.slice(1,word.length), lookup.concat() );
-            lookup.pop()
-        }        
-        //left
-        if( n-1>= 0 && board[m][n-1] === word[0] && !checkExist(m,n-1,lookup)){
-            // console.log('left');
-            lookup.push([m,n-1]);
-            searchWord( m, n-1, word.slice(1,word.length), lookup.concat() );
-            lookup.pop()
-        }        
-    }
-    
-    function checkExist( m,n,lookup ){
-        for( index of lookup ){
-            if( m === index[0] && n === index[1] ){
-                return true;
-            }
-        }
-        return false;
-    }
+        // mark the current, letter can only use once
+        var temp = board[m][n];
+        board[m][n] = '#';
+        var flag = searchWord( m-1, n, index+1, word, board ) || searchWord( m+1, n, index+1, word, board ) || searchWord( m, n+1, index+1, word, board ) || searchWord( m, n-1,  index+1, word, board ); 
+        board[m][n] = temp;
+        return flag;
+    }   
 };
 
 //tags: Facebook, Microsoft, Bloomberg
