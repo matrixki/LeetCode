@@ -14,15 +14,14 @@ Your function should return length = 2, with the first two elements of nums bein
  * @return {number}
  */
 var removeDuplicates = function(nums) {
-    var prev = '', pointer = 0;
-    while(pointer<nums.length){
-        if(prev === nums[pointer]){
-            nums.splice(pointer, 1);
-        }
-        else{
-            prev = nums[pointer];
+    var pointer = 0;
+    for(var i=1, len=nums.length;i<len;i++){
+        if( nums[pointer] !== nums[i] ){
             pointer++;
+            nums[pointer] = nums[i];
         }
     }
-    return nums.length;
+    return pointer+1;
 };
+
+//tags: Facebook, Microsoft, Bloomberg
