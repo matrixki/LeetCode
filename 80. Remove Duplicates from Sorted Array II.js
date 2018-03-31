@@ -20,10 +20,12 @@ var removeDuplicates = function(nums) {
             nums[pointer] = nums[i];
             count = 1;
         }
-        else if( nums[pointer] === nums[i] && count<2){
-            pointer++;
-            nums[pointer] = nums[i];
-            count++;
+        else{
+        	if(count<2){
+	            pointer++;
+	            nums[pointer] = nums[i];
+	            count++;
+        	}
         }
     }
     return pointer+1;
