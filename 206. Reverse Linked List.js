@@ -31,3 +31,5 @@ var reverseList = function(head) {
 };
 
 // recursive check https://leetcode.com/articles/reverse-linked-list/
+
+//tags: Facebook, Amazon, Microsoft, Bloomberg, Uber, Twitter, Apple, Snapchat, Zenefits, Yelp, Yahoo, Adobe
