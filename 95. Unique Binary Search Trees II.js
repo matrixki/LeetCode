@@ -24,7 +24,7 @@ Given n = 3, your program should return all 5 unique BST's shown below.
  * @return {TreeNode[]}
  */
 var generateTrees = function(n) {
-    if(n<1){ return []; }
+    if(n===0){ return []; }
     return generateBST(1,n);
     function generateBST(start,end){
         var result = [];
