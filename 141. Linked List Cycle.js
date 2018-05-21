@@ -55,3 +55,5 @@ var hasCycle = function(head) {
     }
     return true;
 };
+
+//tags: Microsoft, Amazon, Bloomberg, Yahoo
