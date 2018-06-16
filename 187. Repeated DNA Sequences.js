@@ -30,4 +30,30 @@ var findRepeatedDnaSequences = function(s) {
     return result;
 };
 
+/* bitwise solution to save memory */
+var findRepeatedDnaSequences = function(s) {
+    var result = [];
+    var letterMap = new Map();
+    letterMap.set('A',0);
+    letterMap.set('C',1);
+    letterMap.set('G',2);
+    letterMap.set('T',3);
+    
+    var lookup = new Set();
+    var tmp = 0;
+    for(var i=0, len=s.length;i<len;i++){
+        tmp = (tmp << 2) + letterMap.get(s[i]);
+        if(i>=9){
+            tmp = tmp & ((1 << 20) - 1);
+            if( lookup.has(tmp) && result.indexOf(s.substring(i-9,i+1)) === -1){
+                result.push( s.substring(i-9,i+1) );
+            }
+            else{
+                lookup.add(tmp);
+            }
+        }
+    }
+    return result;
+};
+
 //tags: Linkedin
