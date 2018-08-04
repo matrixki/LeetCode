@@ -59,4 +59,20 @@ var kthSmallest = function(root, k) {
     }
 };
 
+/* if the BST is modified (insert/delete operations) often */
+var kthSmallest = function(root, k) {
+    var lookup = [];
+    traceNodes(root, lookup);
+    return lookup[k-1];
+    
+    function traceNodes(node){
+        if(node === null){
+            return;
+        }
+        traceNodes(node.left, lookup);
+        lookup.push(node.val);
+        traceNodes(node.right, lookup);
+    }
+};
+
 //tags: Amazon, Facebook, Microsoft, Bloomberg, Google, Uber
