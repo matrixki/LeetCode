@@ -19,3 +19,5 @@ var isStrobogrammatic = function(num) {
     }
     return true;
 };
+
+//tags: Facebook, Google
