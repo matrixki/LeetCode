@@ -28,3 +28,5 @@ var plusOne = function(digits) {
     }
     return digits;
 };
+
+//tags: Google, Microsoft, ebay
