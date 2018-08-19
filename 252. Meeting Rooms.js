@@ -34,4 +34,4 @@ var canAttendMeetings = function(intervals) {
     return true;
 };
 
-//tag: Facebook
+//tags: Facebook, Microsoft, Amazon
