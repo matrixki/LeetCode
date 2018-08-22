@@ -50,3 +50,5 @@ var threeSum = function(nums) {
     }
     return result;
 };
+
+//tags: facebook, Microsoft, ebay, Google, Aetion, Uber, Adobe, Apple
