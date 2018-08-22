@@ -16,3 +16,5 @@ var singleNumber = function(nums) {
     }
     return result;
 };
+
+//tags: Google, Alibaba, Amazon
