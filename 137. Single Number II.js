@@ -37,3 +37,4 @@ var singleNumber = function(nums) {
     }
 };
 
+//tags: Google, Adobe, NetEase
