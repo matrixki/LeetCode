@@ -37,4 +37,22 @@ var singleNumber = function(nums) {
     }
 };
 
+// bit manipulation
+var singleNumber = function(nums) {
+    var result = 0;
+    for(var i=0;i<32;i++){
+        var count = 0;
+        var bit = 1<<i;
+        for(var j=0, len=nums.length;j<len;j++){
+            if(nums[j]&bit){
+                count++;
+            }
+        }
+        if(count%3!==0){
+            result = result | bit;
+        }
+    }
+    return result;
+};
+
 //tags: Google, Adobe, NetEase
