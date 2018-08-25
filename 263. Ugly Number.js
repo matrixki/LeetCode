@@ -21,3 +21,5 @@ var isUgly = function(num) {
     }
     return num === 1;
 };
+
+//tags: Amazon, Twitter
