@@ -25,3 +25,5 @@ var countPrimes = function(n) {
     }
     return count;
 };
+
+//tags: Microsoft, Amazon, Nvidia
