@@ -28,4 +28,4 @@ var canPermutePalindrome = function(s) {
     return oddcount<2;
 };
 
-// tags: Google Bloomberg Uber 
+// tags: Google, Bloomberg, Uber 
