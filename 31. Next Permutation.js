@@ -44,4 +44,4 @@ var nextPermutation = function(nums) {
     }
 };
 
-//tags: Google
+//tags: Google, Facebook, Amazon, Microsoft
