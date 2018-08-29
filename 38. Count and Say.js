@@ -16,12 +16,9 @@ Note: The sequence of integers will be represented as a string.
  */
 var countAndSay = function(n) {
 
-    var start = generateStr('1');
-    if( n <= 1){ return '1'; }
-    else if( n === 2 ){
-        return start;
-    }
-    for(var i=0;i<n-2;i++){
+    var start = '1';
+    if( n <= 1){ return start; }
+    for(var i=1;i<n;i++){
         start = generateStr(start);
     }
     return start;
@@ -34,18 +31,19 @@ var countAndSay = function(n) {
         var pointer = 0;
         while(pointer<length){
             if( str[pointer] === target ){
-                pointer++;
                 count++;
+                pointer++;
             }
             else{
-                result += count.toString() + target.toString();
+                result += count.toString() + target;
                 count = 0;
                 target = str[pointer];
             }
         } 
+        //last
         result += count.toString() + target;
         return result;
-    }
+    } 
 };
 
-//tags: Facebook
+//tags: Facebook, Google
