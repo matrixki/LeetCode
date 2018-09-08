@@ -40,4 +40,5 @@ var inorderTraversal = function(root) {
     return result;
 };
 
-//tags: Microsoft
+//tags: Microsoft, Facebook, Adobe
+
