@@ -43,4 +43,4 @@ var missingNumber = function(nums) {
     return (1+len)*len/2 - sum;
 }
 
-//tags: Microsoft, Bloomberg
+//tags: Microsoft, Bloomberg, Amazon, Google
