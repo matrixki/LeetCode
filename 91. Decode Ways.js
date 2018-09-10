@@ -20,42 +20,25 @@ The number of ways decoding "12" is 2.
  * @return {number}
  */
 var numDecodings = function(s) {
-    if(!s){ return 0; }
-    var result = [];
-    result[0] = s[0] === '0'? 0 : 1;
-    var curr = parseInt(s[1]);
-    var combo = parseInt( s.substring(0,2) ); 
-    if(curr===0&&combo===0){
+    if(s.length<=0){
         return 0;
     }
-    if(curr>=1&&curr<=9){
-        result[1] = result[0];
-    }
-    if(curr===0 && (combo===10||combo===20)){
-        result[1] = result[0];
-    }    
-    if(combo>10&&combo<=19 || combo>20&&combo<=26){
-        result[1] = result[0]+1;
-    }
-    if(!result[1]){
-        result[1] = 0;
-    }
-    for(var i=2,len=s.length;i<len;i++){
-        var curr = parseInt(s[i]);
-        var combo = parseInt( s.substring(i-1,i+1) );
-        if(curr>=1 && curr<=9){
-            if(!result[i]){ result[i]=0; }
-            result[i] = result[i-1];
+    var dp = [], len = s.length;
+    dp.length = len;
+    dp.fill(0);
+    
+    dp[0] = parseInt(s[0]) === 0 ? 0 : 1;
+    for(var i=1;i<len;i++){
+        if( parseInt( s[i] ) > 0 ){
+            dp[i] += dp[i-1];
         }
-        if(combo>=10 && combo<=26){
-            if(!result[i]){ result[i]=0; }
-            result[i] += result[i-2];
-        }
-        if(!result[i]){
-            return 0;
+        var nums = parseInt( s.substring(i-1, i+1) );
+        if( nums <= 26 && nums >= 10 ){
+            dp[i] += (i-2)>=0 ? dp[i-2] : 1;
         }
     }
-    return result[s.length-1];
+    
+    return dp[len-1];
 };
 
-//tags: Facebook, Microsoft, Uber
+//tags: Facebook, Microsoft, Uber, Amazon, Google
