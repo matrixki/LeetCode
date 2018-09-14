@@ -30,3 +30,5 @@ var canWin = function(s) {
         return false;        
     }
 };
+
+//tags: Google, Rubrik
