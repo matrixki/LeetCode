@@ -51,25 +51,30 @@ var longestConsecutive = function(root) {
         return 0;
     }
     var result = 0;
-    helper(root.left, root.val, 1);    
-    helper(root.right, root.val, 1);    
+    helper(root, root.val, 1);       
     return result;
     
     function helper(node, pre, count){ 
         if(!node){
-            result = Math.max(result, count);
             return;
         }
-        if(node.val===pre+1){
-            count++;
-            helper(node.left, node.val, count);
-            helper(node.right, node.val, count);
-        }        
-        else{
-            result = Math.max(result, count);
-            helper(node.left, node.val, 1);
-            helper(node.right, node.val, 1);
+        if(node.left){
+            if(node.left.val===pre+1){
+                helper(node.left, node.left.val, count+1);    
+            }
+            else{
+                helper(node.left, node.left.val, 1);
+            }
         }
+        if(node.right){
+            if(node.right.val===pre+1){
+                helper(node.right, node.right.val, count+1);    
+            }
+            else{
+                helper(node.right, node.right.val, 1);
+            }
+        }
+        result = Math.max(result, count);
     }
 };
 
