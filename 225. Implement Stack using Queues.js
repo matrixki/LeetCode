@@ -15,7 +15,7 @@ You may assume that all operations are valid (for example, no pop or top operati
  * Initialize your data structure here.
  */
 var MyStack = function() {
-    this.nums = [];
+    this.stack = [];    
 };
 
 /**
@@ -24,7 +24,7 @@ var MyStack = function() {
  * @return {void}
  */
 MyStack.prototype.push = function(x) {
-    this.nums.push(x);
+    this.stack.push(x);    
 };
 
 /**
@@ -32,7 +32,11 @@ MyStack.prototype.push = function(x) {
  * @return {number}
  */
 MyStack.prototype.pop = function() {
-    return this.nums.pop();
+    for(var i=0, len=this.stack.length-1;i<len;i++){
+        var temp = this.stack.shift();
+        this.stack.push(temp);
+    }
+    return this.stack.shift();
 };
 
 /**
@@ -40,7 +44,7 @@ MyStack.prototype.pop = function() {
  * @return {number}
  */
 MyStack.prototype.top = function() {
-    return this.nums[this.nums.length-1];
+    return this.stack[this.stack.length-1];    
 };
 
 /**
@@ -48,7 +52,7 @@ MyStack.prototype.top = function() {
  * @return {boolean}
  */
 MyStack.prototype.empty = function() {
-    return this.nums.length > 0 ? false : true;    
+    return this.stack.length === 0;
 };
 
 /** 
@@ -59,3 +63,5 @@ MyStack.prototype.empty = function() {
  * var param_3 = obj.top()
  * var param_4 = obj.empty()
  */
+
+ //tags: Apple, Microsoft
