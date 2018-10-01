@@ -15,7 +15,9 @@ You may assume that all operations are valid (for example, no pop or peek operat
  * Initialize your data structure here.
  */
 var MyQueue = function() {
-    this.nums = [];
+    //use array as stack
+    this.in = [];
+    this.out = [];
 };
 
 /**
@@ -24,7 +26,7 @@ var MyQueue = function() {
  * @return {void}
  */
 MyQueue.prototype.push = function(x) {
-    this.nums.push(x);
+    this.in.push(x);    
 };
 
 /**
@@ -32,7 +34,8 @@ MyQueue.prototype.push = function(x) {
  * @return {number}
  */
 MyQueue.prototype.pop = function() {
-    return this.nums.shift();
+    this.peek();
+    return this.out.pop();
 };
 
 /**
@@ -40,7 +43,12 @@ MyQueue.prototype.pop = function() {
  * @return {number}
  */
 MyQueue.prototype.peek = function() {
-     return this.nums[0];   
+    if(this.out.length===0){
+        while(this.in.length>0){
+            this.out.push( this.in.pop() );
+        }
+    }
+    return this.out[this.out.length-1];
 };
 
 /**
@@ -48,7 +56,7 @@ MyQueue.prototype.peek = function() {
  * @return {boolean}
  */
 MyQueue.prototype.empty = function() {
-    return this.nums.length > 0 ? false : true;
+    return this.in.length === 0 && this.out.length ===0 ;    
 };
 
 /** 
@@ -59,3 +67,5 @@ MyQueue.prototype.empty = function() {
  * var param_3 = obj.peek()
  * var param_4 = obj.empty()
  */
+
+ //tags: eBay, Amazon
