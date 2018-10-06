@@ -30,8 +30,10 @@ var distributeCandies = function(candies) {
         if( ! lookup.has( candies[i] ) ){
             lookup.add( candies[i] );
         }
+        if(lookup.size === (total/2)){
+        	return total/2;
+        }
     }
-    var kinds = lookup.size;
     
-    return kinds < Math.floor(total / 2) ? kinds : Math.floor(total / 2);
+    return lookup.size;
 };
