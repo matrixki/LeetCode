@@ -42,3 +42,5 @@ var maxProfit = function(prices) {
     }
     return profit;
 };
+
+//tags: Adobe, Amazon, Facebook, Alibaba, Bloomberg, Microsoft
