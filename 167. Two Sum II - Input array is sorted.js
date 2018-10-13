@@ -21,7 +21,7 @@ var twoSum = function(numbers, target) {
         var addUp = numbers[left] + numbers[right];
         if(addUp == target){
             results.push(left+1, right+1);
-            break;
+            return results;
         }
         else if(addUp > target){
             right--;
@@ -32,3 +32,6 @@ var twoSum = function(numbers, target) {
     }
     return results;
 };
+
+//tags: Amazon, Microsoft
+
