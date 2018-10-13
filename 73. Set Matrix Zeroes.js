@@ -16,38 +16,29 @@ Could you devise a constant space solution?
  */
 var setZeroes = function(matrix) {
     var m = matrix.length, n = matrix[0].length;
-    var firstRow = false, firstColumn = false;
+    var firstCol = 1;
     for( var i=0;i<m;i++ ){
-        for( var j=0;j<n;j++ ){
+        if( matrix[i][0] === 0 ){
+            firstCol = 0;
+        }
+        for( var j=1;j<n;j++ ){
             if( matrix[i][j] === 0 ){
-                if( i === 0 ){
-                    firstRow = true;
-                }
-                if( j === 0 ){
-                    firstColumn = true;
-                }
                 matrix[i][0] = 0;
                 matrix[0][j] = 0;
             }
         }
     }
-    for( var i=1;i<m;i++ ){
-        for( var j=1;j<n;j++ ){
-            if( matrix[0][j] === 0 || matrix[i][0] === 0 ){
+    for( var i=m-1;i>=0;i-- ){
+        for( var j=n-1;j>=1;j-- ){
+            if( matrix[i][0] === 0 || matrix[0][j] === 0){
                 matrix[i][j] = 0;
             }
         }
-    }
-    if(firstRow){
-        for(var i=0;i<n;i++){
-            matrix[0][i] = 0;
-        }
-    }
-    if(firstColumn){
-        for(var i=0;i<m;i++){
+        if(firstCol===0){
             matrix[i][0] = 0;
         }
     }
 };
 
-//tags: Microsoft, Amazon
+//tags: Microsoft, Amazon, Facebook, Oracle
+
