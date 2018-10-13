@@ -38,4 +38,4 @@ var findMin = function(nums) {
     return nums[start];
 };
 
-//tags: Microsoft
+//tags: Microsoft, Bloomberg, Facebook, Amazon, Google, Salesforce, Goldman Sachs
