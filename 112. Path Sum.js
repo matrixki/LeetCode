@@ -26,23 +26,23 @@ return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
  * @return {boolean}
  */
 var hasPathSum = function(root, sum) {
-    if(!root) return false;
+    if(!root){
+        return false;
+    }
+    return dfs(root, 0);
     
-    return countTree(root, 0);
-    
-    function countTree(node, s){
-        if( !node.left && !node.right ){
-            s += node.val;
-            return s===sum;
-        }        
-        // going left, right ends
-        if(node.left && !node.right){
-            return countTree(node.left, s+node.val);
+    function dfs(node, curr){
+        if(!node){
+            return curr===sum ? true : false;
+        } 
+        if(node.left&&!node.right){
+            return dfs(node.left, curr+node.val);    
         }
-        // going right, left ends
-        if(node.right && !node.left){
-            return countTree(node.right, s+node.val);
-        }        
-        return countTree(node.left, s+node.val) || countTree(node.right, s+node.val);
+        if(node.right&&!node.left){
+            return dfs(node.right, curr+node.val);    
+        }
+        return dfs(node.left, curr+node.val) || dfs(node.right, curr+node.val);
     }
 };
+
+//tags: Amazon, Zillow
