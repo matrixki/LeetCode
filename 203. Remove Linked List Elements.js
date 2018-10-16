@@ -36,3 +36,5 @@ var removeElements = function(head, val) {
     }
     return node.next;
 };
+
+//tags: Pure Storage, Amazon, Google, Bloomberg, Paypal

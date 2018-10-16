@@ -70,7 +70,7 @@ var updateMatrix = function(matrix) {
         if(x-1>=0&&matrix[x-1][y]===0){
             return true;
         }
-        if(x+1<=n-1&&matrix[x+1][y]===0){
+        if(x+1<=m-1&&matrix[x+1][y]===0){
             return true;
         }
         if(y-1>=0&&matrix[x][y-1]===0){
