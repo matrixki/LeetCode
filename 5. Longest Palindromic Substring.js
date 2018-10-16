@@ -79,7 +79,7 @@ var longestPalindrome = function(s) {
                     if( s[i-j] === s[i+j+1] ){
                         evenStr = s[i-j] + evenStr + s[i+j+1];
                         j++;                        
-                   }
+                    }
                     else{
                         break;
                     }

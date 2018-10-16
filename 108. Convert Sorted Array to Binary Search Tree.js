@@ -26,3 +26,5 @@ var sortedArrayToBST = function(nums) {
         return tnode;
     }    
 };
+
+//tags: Google, Amazon, Apple
