@@ -37,4 +37,5 @@ var singleNumber = function(nums) {
     return [a,b];
 };
 
-//tags: Apple
+//tags: Apple, Facebook, Yahoo
+
