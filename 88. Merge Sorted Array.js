@@ -25,3 +25,5 @@ var merge = function(nums1, m, nums2, n) {
         }
     }
 };
+
+//tags: Facebook, Microsoft, Bloomberg, Amazon, Cisco, Adobe, Indeed, Baidu 
