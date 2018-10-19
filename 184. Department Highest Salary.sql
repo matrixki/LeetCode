@@ -27,4 +27,8 @@
 
 # Write your MySQL query statement below
 select d.Name as Department, e1.Name as Employee, e1.Salary as Salary from Employee e1, Department d where e1.DepartmentId = d.Id and e1.Salary = ( select max(Salary) from Employee e2 where e2.DepartmentId = d.Id );
+select D.Name as Department, E.Name as Employee, E.Salary as Salary from Employee E join Department D ON E.DepartmentId = D.Id WHERE E.Salary = ( select max(Salary) from Employee where DepartmentId = D.Id );
+
+# tags: Google
+
 

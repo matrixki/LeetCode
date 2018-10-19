@@ -27,7 +27,7 @@ var lengthOfLongestSubstring = function(s) {
             max = Math.max(max, end-start);
         }        
         else{ // if substr contain, drop top character
-            substr = substr.replace(s[start],'');
+            substr = substr.substring(1);
             start++;
         }
     }
@@ -35,4 +35,4 @@ var lengthOfLongestSubstring = function(s) {
     return max;
 };
 
-//tags:// Amazon, Bloomberg, Facebook, Adobe, Tencent, Microsoft, Apple, Alibaba, Baidu, Google, Yelp, ebay
+//tags: Amazon, Bloomberg, Facebook, Adobe, Tencent, Microsoft, Apple, Alibaba, Baidu, Google, Yelp, ebay
