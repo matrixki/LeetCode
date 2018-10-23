@@ -18,21 +18,15 @@ There is a more generic way of solving this problem.
  * @return {boolean}
  */
 var isPalindrome = function(x) {
-    // negative number is not a palindrome
-    if(x<0){ return false; }
-    
-   //check how many zeros for the given x
-    var numZeros = 1;
-    while(x/numZeros >= 10){
-        numZeros *= 10;
+    // negative number is not a palindrome, also 10 times n but not 0
+    if(x<0 || (x!==0&&x%10===0)){ return false; }
+    // rev for half
+    let rev = 0;
+    while(x>rev){
+        rev = rev*10 + (x%10);
+        x = Math.floor(x/10);
     }
-    var left = 0, right = 0;
-    while(x !== 0){
-        left = Math.floor(x/numZeros);
-        right = x%10;
-        if(left!==right){ return false; }
-        x = Math.floor((x%numZeros) / 10);
-        numZeros = numZeros / 100;
-    }
-    return true;
+    return (rev===x) || (x===Math.floor(rev/10));
 };
+
+//tags: JPMorgan, Amazon, Adobe, Microsoft, Bloomberg
