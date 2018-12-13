@@ -58,6 +58,45 @@ var backspaceCompare = function(S, T) {
     return s.join('') === t.join('');
 };
 
+/* two pointer */
+var backspaceCompare = function(S, T) {
+    let slen = S.length;
+    let strS  = '';
+    let count = 0;
+    for( let i=slen-1;i>=0;i-- ){
+        let curr = S[i];
+        if(curr==='#'){
+            count++;
+        }
+        else{
+            if(count>0){
+                count--;
+            }
+            else{
+                strS += curr;
+            }
+        }
+    }
+    let tlen = T.length;
+    let strT  = '';
+    count = 0;
+    for( let j=tlen-1;j>=0;j-- ){
+        let curr = T[j];
+        if(curr==='#'){
+            count++;
+        }
+        else{
+            if(count>0){
+                count--;
+            }
+            else{
+                strT += curr;
+            }
+        }
+    }        
+    return strS === strT;
+};
+
 //tags: Google, Facebook
 
 
