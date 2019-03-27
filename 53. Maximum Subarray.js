@@ -15,10 +15,14 @@ If you have figured out the O(n) solution, try coding another solution using the
  * @return {number}
  */
 var maxSubArray = function(nums) {
-    var maxSoFar=nums[0], maxEndingHere=nums[0];
-    for (var i=1;i<nums.length;++i){
-    	maxEndingHere= Math.max(maxEndingHere+nums[i],nums[i]);
-    	maxSoFar=Math.max(maxSoFar, maxEndingHere);	
+    let dp = [];
+    dp[0] = nums[0];
+    let result = nums[0];
+    for(let i=1;i<nums.length;i++){
+        dp[i] = Math.max( dp[i-1]+nums[i], nums[i] );
+        result = Math.max( result, dp[i] );
     }
-    return maxSoFar;
+    return result;
 };
+
+//tags: Apple, Microsoft, Google, Linkedin, Facebook, Amazon, Bloomberg, SAP, JPMorgan, Adobe, Uber, Alibaba, Two Sigma, Yahoo, Oracle, Capital One, Zillow, Cisco
