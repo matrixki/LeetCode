@@ -29,13 +29,36 @@ Google: 90% of our engineers use the software you wrote (Homebrew), but you canâ
  * @return {TreeNode}
  */
 var invertTree = function(root) {
-    if(root === null || (root.left === null && root.right === null) ){
+    if( !root || (!root.left && !root.right) ){
         return root;
     }
-    
-    let temp  = root.left;
+    let tmp = root.left;
     root.left = invertTree(root.right);
-    root.right = invertTree(temp);
-    
+    root.right = invertTree(tmp);
     return root;
 };
+
+// iterative with stack
+var invertTree = function(root) {
+    if(!root){
+        return root;
+    }
+    let stack = [];
+    stack.push(root);
+    while(stack.length > 0){
+        let node = stack.pop();
+        console.log(node.left);
+        let left = node.left;
+        node.left = node.right;
+        node.right = left;
+        if(node.left){
+            stack.push(node.left);
+        }
+        if(node.right){
+            stack.push(node.right);
+        }
+    }
+    return root;
+};
+
+//tags: Google, Bloomberg, Amazon, Facebook, Adobe

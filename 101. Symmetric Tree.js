@@ -69,3 +69,6 @@ function checkLeftRight(p, q){
     
     return (p.val===q.val)&&checkLeftRight(p.left, q.right)&&checkLeftRight(p.right, q.left);
 }
+
+//tags: Amazon, Linkedin, Facebook, Google, Adobe, Apple, Oracle, Bloomberg
+
