@@ -28,27 +28,25 @@ return its level order traversal as:
  * @return {number[][]}
  */
 var levelOrder = function(root) {
-    var result = [];
-    if(!root){ return []; }
-    addNode(root,0);
+    let result = [];
+    if(!root){ return result; }
+    helper(root, 0);
     return result;
-    
-    function addNode(node, level){
-        if(!node){ return; }
-        // add value
-        if(result[level] === undefined){
-            result[level] = [];
+    function helper(node, level){
+        if(!node){
+            return;
+        }
+        if(!result[level]){
+            result[level] = [];    
         }
         result[level].push(node.val);
-        // go left
-        if(node.left!==null){
-            addNode(node.left,level+1);
+        if(node.left){
+            helper(node.left, level+1);
         }
-        // go right
-        if(node.right!==null){
-            addNode(node.right,level+1);
+        if(node.right){
+            helper(node.right, level+1);
         }
     }
 };
 
-//tags: Facebook, Microsoft, Amazon, Bloomberg, Linkedin, Apple
+//tags: Facebook, Microsoft, Amazon, Bloomberg, Linkedin, Apple, Uber, Oracle, Walmart Labs
