@@ -24,29 +24,65 @@ return its bottom-up level order traversal as:
  * }
  */
 /**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+
+
+/**
  * @param {TreeNode} root
  * @return {number[][]}
  */
-var levelOrderBottom = function(root) {   
-    if(!root){ return []; }
-    var result = [];
-    var treeMap = {};
+var levelOrderBottom = function(root) {
+    
+    let result = [];
+    if(!root){ return result; }
+    helper(root, 0);
+    return result;
+    
+    function helper(node, level){
+        if(!node){
+            return;
+        }
+        if(level===result.length){
+            result.unshift([]);
+        }
+        if(node.left){
+            helper(node.left, level+1);
+        }
+        if(node.right){
+            helper(node.right, level+1);
+        }
+        result[result.length-level-1].push(node.val);
+    }    
+};
 
-    goDeeper(root, 0);
-    for (var i in treeMap) {
-        result.push(treeMap[i]);   
-    }
+/* level-order traversal then reverse */
+var levelOrderBottom = function(root) {
+    
+    let result = [];
+    if(!root){ return result; }
+    helper(root, 0);
     return result.reverse();
     
-    function goDeeper(node, level){
-        if(!node){ return false; }
-        if( !treeMap[level] ){
-            treeMap[level] = [node.val];
+    function helper(node, level){
+        if(!node){
+            return;
         }
-        else{
-            treeMap[level].push(node.val);
+        if(!result[level]){
+            result[level] = [];
         }
-        goDeeper(node.left, level+1);
-        goDeeper(node.right, level+1);
-    }
+        result[level].push(node.val);
+        if(node.left){
+            helper(node.left, level+1);
+        }
+        if(node.right){
+            helper(node.right, level+1);
+        }
+    }    
 };
+
+//tags: Facebook
