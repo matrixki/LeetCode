@@ -26,16 +26,15 @@ Follow up: Recursive solution is trivial, could you do it iteratively?
  * @return {number[]}
  */
 var preorderTraversal = function(root) {
-    var result = [];
+    let result = [];
     if(!root){ return result; }
-    var stack = [];
-    
-    while(root !== null || stack.length>0){
-        if(root !== null ){
-            stack.push(root);
+    let stack = [];
+    while(root || stack.length>0){
+        if(root){
             result.push(root.val);
+            stack.push(root);
             root = root.left;
-        }    
+        }
         else{
             root = stack.pop();
             root = root.right;
@@ -43,3 +42,5 @@ var preorderTraversal = function(root) {
     }
     return result;
 };
+
+//tags: Cisco, Google
