@@ -30,14 +30,15 @@ Output: 6
  * @return {number}
  */
 var countNodes = function(root) {
-    if(!root){ return 0; }
-    var lh = 0, rh = 0;
-    var lnode = root;
-    var rnode = root;
+    let lh = 0, rh = 0;
+    //count lh
+    let lnode = root
     while(lnode){
         lh++;
         lnode = lnode.left;
     }
+    //count rh
+    let rnode = root;
     while(rnode){
         rh++;
         rnode = rnode.right;
@@ -45,8 +46,10 @@ var countNodes = function(root) {
     if( lh === rh ){
         return Math.pow(2, lh) - 1;
     }
-    return 1+countNodes(root.left)+countNodes(root.right);
+    else{
+        return 1 + countNodes(root.left) + countNodes(root.right);
+    }
 };
 
-//tags: Google
+//tags: Google, Facebook, Yahoo
 
