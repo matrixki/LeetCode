@@ -24,31 +24,29 @@ Given target = 20, return false.
  * @param {number} target
  * @return {boolean}
  */
+/**
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
+ */
 var searchMatrix = function(matrix, target) {
-    var m = matrix.length;
-    if(m<1){
+    if(matrix.length===0){
         return false;
     }
-    var n = matrix[0].length;
-    if(n<1){
-        return false;
-    }
-    
-    var row = 0;
-    var col = n-1;
-    while(row<m&&col>=0){
-        var curr = matrix[row][col];
-        if(curr===target){
+    let m = 0;
+    let n = matrix[0].length-1;
+    while( m<matrix.length && n>=0){
+        if(matrix[m][n]===target){
             return true;
         }
-        else if(curr>target){
-            col--;
+        else if(matrix[m][n]>target){
+            n--;
         }
         else{
-            row++;
+            m++;
         }
     }
     return false;
 };
 
-//tags: Amazon, Microsoft, Bloomberg, Google, Tencent, Apple
+//tags: Amazon, Microsoft, Bloomberg, Google, Tencent, Apple, Facebook, Goldman Sachs, Citadel, eBay
