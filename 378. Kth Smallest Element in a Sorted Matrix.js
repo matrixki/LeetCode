@@ -43,4 +43,17 @@ var kthSmallest = function(matrix, k) {
     return start;
 };
 
+//firth thought
+var kthSmallest = function(matrix, k) {
+    let flatArr = [];
+    for(let i=0;i<matrix.length;i++){
+        flatArr = flatArr.concat(matrix[i]);
+        
+    }
+    flatArr.sort((a,b) => {
+        return a-b;
+    });
+    return flatArr[k-1];
+};
+
 //tags: Google, Facebook, Amazon, Adobe, Uber
