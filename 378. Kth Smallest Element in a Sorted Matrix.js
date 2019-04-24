@@ -43,7 +43,7 @@ var kthSmallest = function(matrix, k) {
     return start;
 };
 
-//firth thought
+//first thought
 var kthSmallest = function(matrix, k) {
     let flatArr = [];
     for(let i=0;i<matrix.length;i++){
