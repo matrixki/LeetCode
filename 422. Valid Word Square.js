@@ -71,19 +71,20 @@ Therefore, it is NOT a valid word square.
  * @return {boolean}
  */
 var validWordSquare = function(words) {
-    for( var i=0, len=words.length;i<len;i++ ){
-        var j = 0;
-        while( j<words[i].length && j<len ){
-            if( words[i][j] !== words[j][i] ){
+    for(let i=0, len=words.length;i<len;i++){
+        let curr = words[i];
+        let j=0;
+        for(;j<curr.length && j<len;j++){
+            if( curr[j] !== words[j][i] ){
                 return false;
-            }  
-            j++;
+            }
         }
-        if( j < words[i].length){
+        if(j<curr.length){
             return false;
         }
-    }    
-    return true;
+    }
+    return true;    
 };
 
 //tags: Google
+
