@@ -29,28 +29,23 @@ The wordList parameter had been changed to a list of strings (instead of a set o
  * @return {number}
  */
 var ladderLength = function(beginWord, endWord, wordList) {
-    var queue = [], wordLen = beginWord.length;
-    queue.push([ beginWord, 1 ]);
-    // use set for better time performance
-    var lookup = new Set(wordList);
-    if( !lookup.has(endWord) ){ return 0; }
-    //Breadth First Search
-    while(queue.length >0){
-        var obj = queue.shift();
-        var curr = obj[0];
-        var length = obj[1];
-        if( curr === endWord ){
+    let queue = [], wordLen = beginWord.length;
+    queue.push( [beginWord, 1] );
+    let lookup = new Set(wordList);
+    if(!lookup.has(endWord)){ return 0; }
+    while(queue.length>0){
+        let curr = queue.shift();
+        let word = curr[0];
+        let length = curr[1];
+        if(word === endWord){
             return length;
         }
-        // only change one character
-        for( var i=0;i<wordLen;i++ ){
-            for(var j=0;j<26;j++){
-                // replace one character at index i
-                var newStr = curr.substr(0,i)+String.fromCharCode(97+j)+curr.substring(i+1);
-                // check if exists in the lookup
-                if( lookup.has(newStr) ){
-                    queue.push( [ newStr, length+1 ] );
-                    lookup.delete(newStr);
+        for(let i=0;i<wordLen;i++){
+            for(let j=0;j<26;j++){
+                let str = word.substr(0,i)+String.fromCharCode(97+j)+word.substring(i+1);
+                if(lookup.has(str)){
+                    queue.push([str, length+1]);
+                    lookup.delete(str);
                 }
             }
         }
@@ -58,4 +53,5 @@ var ladderLength = function(beginWord, endWord, wordList) {
     return 0;
 };
 
-//tags: Facebook, Amazon, Linkedin, Snapchat, Yelp
+//tags: Facebook, Amazon, Linkedin, Snapchat, Yelp, Google, Lyft, Salesforce, Square, Microsoft, Oracle, Uber, Affirm, Zillow
+
