@@ -13,11 +13,15 @@ Special thanks to @ts for adding this problem and creating all test cases.
  */
 var trailingZeroes = function(n) {
     // math problems: only need to count the number of factor 5
-    if( n === 0 ) return 0;
-    var result = 0;
-    while( n ){
+    if(n === 0){
+        return 0;
+    }
+    let result = 0;
+    while( n > 0 ){
         n = Math.floor(n/5);
         result += n;
     }
     return result;
 };
+
+//tags: Microsoft

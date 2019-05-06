@@ -26,22 +26,25 @@ The read function will only be called once for each test case.
 var solution = function(read4) {
     /**
      * @param {character[]} buf Destination buffer
-     * @param {number} n Maximum number of characters to read
-     * @return {number} The number of characters read
+     * @param {number} n Number of characters to read
+     * @return {number} The number of actual characters read
      */
     return function(buf, n) {
-        let result = 0, eof = false;
-        var temp = Array(4);
-        while( !eof && result < n ){
-            let perRead = read4( temp ); 
-            if( perRead < 4 ){
+        let count = 0, eof = false;
+        let temp = new Array(4);
+        while( !eof && count < n ){
+            let preRead = read4(temp);
+            if(preRead<4){
                 eof = true;
             }
-            let toRead = Math.min( n-result, perRead );
-            for( var i=0;i<toRead;i++ ){
-                buf[result++] = temp[i];
+            let toRead = Math.min( n-count, preRead );
+            for(let i=0;i<toRead;i++){
+                buf[count] = temp[i];
+                count++;
             }
         }
-        return result;
+        return count;
     };
 };
+
+//tags: Facebook, Google

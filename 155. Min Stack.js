@@ -20,8 +20,8 @@ minStack.getMin();   --> Returns -2.
  * initialize your data structure here.
  */
 var MinStack = function() {
-    this.min = [];
     this.stack = [];
+    this.min = [];
 };
 
 /** 
@@ -29,9 +29,8 @@ var MinStack = function() {
  * @return {void}
  */
 MinStack.prototype.push = function(x) {
-    let val = this.getMin();
     this.stack.push(x);
-    if( val === undefined || x <= val ){
+    if( this.getMin() === undefined || x <= this.getMin() ){
         this.min.push(x);
     }
 };
@@ -40,31 +39,33 @@ MinStack.prototype.push = function(x) {
  * @return {void}
  */
 MinStack.prototype.pop = function() {
-    let el = this.stack.pop();
-    if( el === this.getMin() ){
+    if( this.stack.pop() === this.getMin() ){
         this.min.pop();
-    }   
+    }
 };
 
 /**
  * @return {number}
  */
 MinStack.prototype.top = function() {
-    return this.stack[ this.stack.length -1 ];
+    return this.stack[ this.stack.length-1 ];
 };
 
 /**
  * @return {number}
  */
 MinStack.prototype.getMin = function() {
-    return this.min[ this.min.length -1 ];
+    return this.min[ this.min.length-1 ];
 };
 
 /** 
  * Your MinStack object will be instantiated and called as such:
- * var obj = Object.create(MinStack).createNew()
+ * var obj = new MinStack()
  * obj.push(x)
  * obj.pop()
  * var param_3 = obj.top()
  * var param_4 = obj.getMin()
  */
+
+//tags: Amazon, Google, Microsoft, Adobe, Apple, Bloomberg, Uber, Facebook, Goldman Sachs, Wish
+
