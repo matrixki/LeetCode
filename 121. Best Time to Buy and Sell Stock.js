@@ -22,7 +22,7 @@ In this case, no transaction is done, i.e. max profit = 0.
 var maxProfit = function(prices) {
     let min = Math.pow(2,32)-1;
     let max = 0;
-    for(var i=0, len=prices.length;i<len;i++){
+    for(let i=0;i<prices.length;i++){
         min = Math.min(min, prices[i]);
         max = Math.max(max, prices[i]-min);
     }

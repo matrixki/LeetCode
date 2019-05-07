@@ -51,4 +51,4 @@ var threeSum = function(nums) {
     return result;
 };
 
-//tags: facebook, Microsoft, ebay, Google, Aetion, Uber, Adobe, Apple
+//tags: facebook, Microsoft, ebay, Google, Uber, Adobe, Apple, Bloomberg, Microsoft, Walmart Labs, Alibaba, Baidu, Yahoo, Box, Quora, Indeed, Oracle
