@@ -56,4 +56,4 @@ var hasCycle = function(head) {
     return true;
 };
 
-//tags: Microsoft, Amazon, Bloomberg, Yahoo
+//tags: Microsoft, Amazon, Bloomberg, Yahoo, Google, Linkedin, Apple, Adobe, Oracle, Goldman Sachs, Akuna Capital

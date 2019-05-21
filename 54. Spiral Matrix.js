@@ -19,10 +19,8 @@ You should return [1,2,3,6,9,8,7,4,5].
 var spiralOrder = function(matrix) {
     if( matrix.length < 1 ){ return matrix; }
     var result = [];
-    var left = 0, right = matrix[0].length, bottom = matrix.length, top = 0;
-    var totalLength = right*bottom;
-    right--;
-    bottom--;
+    var left = 0, right = matrix[0].length-1, bottom = matrix.length-1, top = 0;
+    var totalLength = (matrix[0].length)*(matrix.length);
     var i=0, j=0;
     while( result.length < totalLength ){
         // go right
@@ -57,9 +55,8 @@ var spiralOrder = function(matrix) {
         i++;
         j++;
         left++;
-        
     }
-    return result;
+    return result;     
 };
 
-//tags: Google, Microsoft, Uber
+//tags: Google, Microsoft, Uber, Adobe, Apple, Walmart Labs, Paypal, Bloomberg, Facebook, ByteDance, Robinhood, eBay, Drawbridge, Cisco, Snapchat
