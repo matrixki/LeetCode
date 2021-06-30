@@ -26,4 +26,14 @@ var canJump = function(nums) {
     return true;
 };
 
+var canJump = function(nums) {
+    let canReach = nums.length-1;
+    for(let i=nums.length-2;i>=0;i--){
+        if(i+nums[i]>=canReach){
+            canReach = i;
+        }
+    }
+    return canReach === 0;
+};
+
 //tags: Microsoft
