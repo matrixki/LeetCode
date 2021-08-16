@@ -42,9 +42,9 @@ Note: This question is the same as 783: https://leetcode.com/problems/minimum-di
     let prev = null;
     
     function dfs(root){
-        if(root === null){ return; }
+        if(!root){ return; }
         dfs(root.left);
-        if(prev !== null){
+        if(prev){
             result = Math.min(result, (root.val - prev.val));
         }
         prev = root;
