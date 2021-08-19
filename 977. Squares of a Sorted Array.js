@@ -41,4 +41,4 @@ var sortedSquares = function(A) {
     return result;
 };
 
-//tags: Google, Facebook, Adobe
+//tags: Google, Facebook, Adobe, VMWare, eBay, Apple, Uber, Cisco, Bloomberg
