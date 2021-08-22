@@ -48,4 +48,4 @@ var containsNearbyAlmostDuplicate = function(nums, k, t) {
     return false;
 };
 
-//tags: Airbnb, Palantir
+//tags: Airbnb, Palantir, Adobe
