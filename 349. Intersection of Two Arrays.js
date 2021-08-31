@@ -15,32 +15,14 @@ The result can be in any order.
  * @return {number[]}
  */
 var intersection = function(nums1, nums2) {
-    const len1 = nums1.length;
-    const len2 = nums2.length;
-    var big, small = [];
-    if( len1 > len2 ){
-        big = nums1;
-        small = nums2;
-    }
-    else{
-        big = nums2;
-        small = nums1;
-    }
-    
-    var lookup = [], result = [];
-    for( num of big ){
-        if( !lookup[num] ){
-            lookup[num] = true;
+    let nums1Map = new Set(nums1);
+    let result = new Set();
+    nums2.forEach(item => {
+        if(nums1Map.has(item)){
+            result.add(item)
         }
-    }
-    for( num of small ){
-        if( lookup[ num ] ){
-            result.push( num );
-            lookup[num] = false;
-        }
-    }
-    return result;
-    
+    })
+    return [...result]; 
 };
 
-//tags: Two Sigma
+//tags: Amazon, LinkedIn, Google, Bloomberg, Apple, Microsoft
