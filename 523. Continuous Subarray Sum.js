@@ -45,12 +45,14 @@ tags: Facebook, Amazon, Bloomberg
     for(let i=0;i<nums.length;i++){
         sum += nums[i];
         sum = sum % k;
-        if(lookup.has(sum) && i - lookup.get(sum) > 1){
-            return true;
+        if(lookup.has(sum)){
+            if( i - lookup.get(sum) > 1){
+                return true;   
+            }
         }
         else{
             lookup.set(sum, i);
         }
     }
-    return false;
+    return false;    
 };
