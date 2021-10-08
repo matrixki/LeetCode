@@ -29,16 +29,16 @@ The cells are adjacent in only four directions: up, down, left and right.
 */
 
 /**
- * @param {number[][]} matrix
+ * @param {number[][]} mat
  * @return {number[][]}
  */
-var updateMatrix = function(matrix) {
+ var updateMatrix = function(matrix) {
     let m = matrix.length;
     let n = matrix[0].length;
     for( let i=0;i<m;i++ ){
         for(let j=0;j<n;j++){
             if(matrix[i][j]===1&&!hasNeiborZeros(i,j, matrix)){
-                matrix[i][j] = m+n+1;
+                matrix[i][j] = Number.MAX_SAFE_VALUE;
             }
         }
     }
@@ -53,12 +53,12 @@ var updateMatrix = function(matrix) {
     return matrix;
     
     function dfs(matrix,x,y,curr){
-        if( x<0 || x>=m || y<0 || y>=n || ( matrix[x][y]<=curr&&curr!==1 ) ){
+        if( x<0 || x>=m || y<0 || y>=n || matrix[x][y]<curr ){
             return;
         }
         
-        matrix[x][y] = curr;    
-        
+        matrix[x][y] = curr; 
+
         dfs(matrix,x-1,y,matrix[x][y]+1);
         dfs(matrix,x+1,y,matrix[x][y]+1);
         dfs(matrix,x,y-1,matrix[x][y]+1);
