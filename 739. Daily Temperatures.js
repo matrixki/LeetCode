@@ -10,15 +10,13 @@ Note: The length of temperatures will be in the range [1, 30000]. Each temperatu
  * @param {number[]} temperatures
  * @return {number[]}
  */
-var dailyTemperatures = function(temperatures) {
-    var result = [];
-    var len=temperatures.length
-    result.length = len;
-    result.fill(0);
-    var stack = [];
-    for(var i=0;i<len;i++){
-        while(stack.length>0 && temperatures[stack[stack.length-1]]<temperatures[i]){
-            var index = stack.pop();
+ var dailyTemperatures = function(temperatures) {
+    const len = temperatures.length;
+    let result = new Array(len).fill(0);
+    let stack = [];
+    for(let i=0;i<len;i++){
+        while(stack.length > 0 && temperatures[stack[stack.length-1]]<temperatures[i]){
+            const index = stack.pop();
             result[index] = i-index;
         }
         stack.push(i);
