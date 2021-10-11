@@ -24,25 +24,30 @@ Return 3. The paths that sum to 8 are:
 1.  5 -> 3
 2.  5 -> 2 -> 1
 3. -3 -> 11
+
+tags: Microsoft, Facebook, Amazon, Bloomberg, Oracle, Adobe
+
 */
 
 /**
  * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
  * }
  */
 /**
  * @param {TreeNode} root
- * @param {number} sum
+ * @param {number} targetSum
  * @return {number}
  */
-var pathSum = function(root, sum) {
+ var pathSum = function(root, targetSum) {
     if(!root){ return 0; }
-    return goDeeper(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
-    function goDeeper(node, sum){
+    return traverse(root, targetSum) + pathSum(root.left, targetSum) + pathSum(root.right, targetSum);
+    
+    function traverse(node, sum){
         if(!node){ return 0; }
-        return ( node.val === sum ? 1:0 )+goDeeper(node.left, sum-node.val)+goDeeper(node.right, sum-node.val);
+        return (node.val === sum ? 1 : 0) + traverse(node.left, sum-node.val) + traverse(node.right, sum-node.val);
     }  
 };
