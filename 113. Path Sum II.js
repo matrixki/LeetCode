@@ -20,42 +20,43 @@ Return:
    [5,4,11,2],
    [5,8,4,5]
 ]
+
+tags: Amazon, Facebook, Microsoft
+
 */
 
 /**
  * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
  * }
  */
 /**
  * @param {TreeNode} root
- * @param {number} sum
+ * @param {number} targetSum
  * @return {number[][]}
  */
-var pathSum = function(root, sum) {
+ var pathSum = function(root, targetSum) {
     if(!root){ return []; }
-    var result = [];
-    addNode(root, 0, [], sum);
+    let result = [];
+    traverse(root, targetSum, []);
     return result;
-    
-    function addNode(node, curr, currArr, sum){
-        if( node.left === null && node.right === null ){
-            if( node.val+curr === sum ){
-                currArr.push(node.val);
-                result.push(currArr);
-            }
-            else{
-                return;
-            }
-        }  
-        curr+=node.val;
-        if( node.left !== null ){ 
-            addNode( node.left, curr, currArr.concat([node.val]), sum );
+    function traverse(node, sum, path){
+        if(!node.left && !node.right){ 
+            if(node.val === sum){
+                path.push(node.val);
+                result.push(path);
+            }            
+            return;
         }
-        if( node.right !== null ){
-            addNode( node.right, curr, currArr.concat([node.val]), sum );
+        path.push(node.val);
+        if(node.left){
+            traverse(node.left, sum-node.val, [...path]);    
+        }
+        if(node.right){
+            traverse(node.right, sum-node.val,[...path]);    
         }
     }
 };
