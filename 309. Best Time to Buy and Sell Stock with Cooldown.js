@@ -10,26 +10,24 @@ Example:
 Input: [1,2,3,0,2]
 Output: 3 
 Explanation: transactions = [buy, sell, cooldown, buy, sell]
+
+tags: Adobe
+
 */
 
 /**
  * @param {number[]} prices
  * @return {number}
  */
-var maxProfit = function(prices) {
-    if(prices.length<1){
-        return 0;
-    }
-    //define state
-    var rest = [], buy = [], sell = [];
-    var len = prices.length;
-    rest[0] = 0, buy[0] = -prices[0], sell[0] = -1*Math.pow(2,32);
-    for(var i=1;i<len;i++){
-        rest[i] = Math.max(rest[i-1], sell[i-1]);
+ var maxProfit = function(prices) {
+    let rest = [], buy = [], sell = [];
+    rest[0] = 0, buy[0] = -1*prices[0], sell[0] = Number.MIN_VALUE;
+    for(let i=1;i<prices.length;i++){
+        rest[i] = Math.max( rest[i-1], sell[i-1] );
         buy[i] = Math.max(rest[i-1]-prices[i], buy[i-1]);
-        sell[i] = buy[i-1]+prices[i];
+        sell[i] = prices[i] + buy[i-1];
     }
-    return Math.max(rest[len-1], sell[len-1]);
+    return Math.max(sell[prices.length-1], rest[prices.length-1]);
 };
 
 //tags: Alibaba, Google
