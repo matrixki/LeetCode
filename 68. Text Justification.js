@@ -52,6 +52,9 @@ Output:
   "everything  else  we",
   "do                  "
 ]
+
+tags: Google, Karat, Twilio, Uber, LinkedIn, Indeed, Facebook, Microsoft, Coursera, Intuit, Reddit, Oracle
+
 */
 
 /**
@@ -59,31 +62,60 @@ Output:
  * @param {number} maxWidth
  * @return {string[]}
  */
-var fullJustify = function(words, maxWidth) {
-    let result = [];
-    let n = words.length;
-    for(let i=0;i<n;i=j){
-        let len = -1;
-        for(var j=i;j<n && 1+words[j].length+len<=maxWidth;j++){
-            len += 1+ words[j].length;
+ var fullJustify = function(words, maxWidth) {
+    let count = 0, row = [], result = [];
+    for(let i=0;i<words.length;i++){
+        count += words[i].length;
+        if(count>maxWidth){
+            i--;
+            count = 0;
+            justify(row);
+            row = [];
         }
-        // calculate spaces for each
-        let spaces = 1;
-        let extra = 0;
-        if(j!==i+1&&j!==n){
-            spaces = (maxWidth-len) / ( j-1-i ) +1;
-            extra = (maxWidth-len) % (j-1-i);
+        else{
+            row.push(words[i]);    
+            count++;
         }
-        
-        //build the row
-        let row = words[i];
-        for(let k=i+1;k<j;k++, extra--){
-            row += ' '.repeat(spaces + (extra>0?1:0) ) + words[k];
-        }
-        row += ' '.repeat(maxWidth-row.length);
-        result.push(row);   
+    }
+    // handle last row    
+    if(row.length>0){
+        leftAlign(row);
     }
     return result;
+    
+    function justify(words){
+        const wordsCount = words.length;
+        const wordsLen = words.reduce((prev, acc)=>{ return prev+acc.length}, 0);
+        let spaces = maxWidth - wordsLen;
+        let str = words[0];
+        let totalPad = spaces;
+        let pad = Math.floor(spaces/(wordsCount-1));
+        let extraPad = totalPad - pad*(wordsCount-1);
+        for(let i=1;i<words.length;i++){
+            if(extraPad>0){
+                str += (new Array(pad+1).fill(" ").join("") + words[i] );
+                extraPad--;
+            }
+            else{
+                str += (new Array(pad).fill(" ").join("") + words[i] );    
+            }
+        }
+        if(str.length<maxWidth){
+            str += new Array(maxWidth-str.length).fill(" ").join("");
+        }
+        result.push(str);
+    }
+    
+    function leftAlign(words){
+        let str = words[0];
+        for(let i=1;i<words.length;i++){
+            str += ` ${words[i]}`;
+        }
+        if(str.length < maxWidth){
+            str += new Array(maxWidth-str.length).fill(" ").join("");
+        }
+        result.push(str);
+    }
 };
 
 //tags: Linkedin, Google, Coursera, Snapchat, Airbnb
