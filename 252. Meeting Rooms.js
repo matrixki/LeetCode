@@ -4,6 +4,9 @@ Given an array of meeting time intervals consisting of start and end times [[s1,
 For example,
 Given [[0, 30],[5, 10],[15, 20]],
 return false.
+
+tags: Amazon, Microsoft, Wayfair
+
 */
 
 /**
@@ -13,25 +16,21 @@ return false.
  *     this.end = end;
  * }
  */
+
 /**
- * @param {Interval[]} intervals
+ * @param {number[][]} intervals
  * @return {boolean}
  */
-var canAttendMeetings = function(intervals) {
+ var canAttendMeetings = function(intervals) {
     intervals.sort(function(a,b){
-        if( a.start === b.start ){
-            return 0;
-        }
-        else{
-            return (a.start<b.start) ? -1 : 1;
-        }
+        return a[0]-b[0];
     });
-    for(var i=0, len = intervals.length;i<len-1;i++){
-        if( intervals[i].end > intervals[i+1].start ){
+    for(let i=0, len = intervals.length;i<len-1;i++){
+        if( intervals[i][1]> intervals[i+1][0] ){
             return false;
         }
     }
-    return true;
+    return true;    
 };
 
 //tags: Facebook, Microsoft, Amazon
