@@ -15,6 +15,9 @@ to
 Trivia:
 This problem was inspired by this original tweet by Max Howell:
 Google: 90% of our engineers use the software you wrote (Homebrew), but you can’t invert a binary tree on a whiteboard so fuck off.
+
+tags: Amazon, Google, Adobe, Facebook, Apple, VMware
+
 */
 
 /**
@@ -39,18 +42,27 @@ var invertTree = function(root) {
 };
 
 // iterative with stack
-var invertTree = function(root) {
-    if(!root){
-        return root;
-    }
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+ var invertTree = function(root) {
+    if(!root){ return root; }
     let stack = [];
     stack.push(root);
     while(stack.length > 0){
-        let node = stack.pop();
-        console.log(node.left);
-        let left = node.left;
+        const node = stack.pop();
+        const temp = node.left;
         node.left = node.right;
-        node.right = left;
+        node.right = temp;
         if(node.left){
             stack.push(node.left);
         }
