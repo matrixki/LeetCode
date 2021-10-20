@@ -22,6 +22,7 @@ The length of both nums1 and nums2 would not exceed 1000.
 
 */
 
+// O(n^2)
 /**
  * @param {number[]} findNums
  * @param {number[]} nums
@@ -49,3 +50,26 @@ var nextGreaterElement = function(findNums, nums) {
 };
 
 //tags: Bloomberg
+
+// O(n)
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+ var nextGreaterElement = function(nums1, nums2) {
+    let lookup = new Map();
+    let stack = [];
+    for(let i=0;i<nums2.length;i++){
+        while(stack.length>0 && nums2[i] > stack[stack.length-1]){
+            lookup.set(stack.pop(), nums2[i]);
+        }
+        stack.push(nums2[i])
+    }
+    let result = [];
+    for(let i=0;i<nums1.length;i++){
+        result.push(lookup.get(nums1[i]) || -1);
+    }
+    return result;
+};
+
