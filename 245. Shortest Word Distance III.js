@@ -13,36 +13,39 @@ Output: 3
 Note:
 You may assume word1 and word2 are both in the list.
 
+tags :Google, LinkedIn
 
 */
 
 /**
- * @param {string[]} words
+ * @param {string[]} wordsDict
  * @param {string} word1
  * @param {string} word2
  * @return {number}
  */
-var shortestWordDistance = function(words, word1, word2) {
-    var result = Number.MAX_SAFE_INTEGER;
-    var i1 = result, i2 = -result;
-    var isSame = word1===word2;
-    for(var i=0, len=words.length;i<len;i++){
-        var curr = words[i];
-        if(curr===word1){
+ var shortestWordDistance = function(wordsDict, word1, word2) {
+    let result = wordsDict.length;
+    let p1 = -1, p2 = -1;
+    let isSame = word1 === word2;
+    for(let i=0;i<wordsDict.length;i++){
+        if(wordsDict[i]===word1){
             if(isSame){
-                i1 = i2;
-                i2 = i;
+                p1 = p2;
+                p2 = i;
             }
             else{
-                i1 = i;
+                p1 = i;   
             }
         }
-        else if(curr===word2){
-            i2 = i;
+        if(wordsDict[i]===word2){
+            p2 = i;
         }
-        result = Math.min( result, Math.abs(i1-i2) );
+        if(p1 !== -1 && p2 !== -1){
+            const distance = Math.abs(p1-p2);
+            result = Math.min(result, distance)
+        }
     }
-    return result;
+    return result;    
 };
 
 //tags: Linkedin
