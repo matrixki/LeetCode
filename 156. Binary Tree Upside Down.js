@@ -34,6 +34,9 @@ Here's an example:
     \
      5
 The above binary tree is serialized as [1,2,3,#,#,4,#,#,5].
+
+tags: Linkedin
+
 */
 
 /**
@@ -61,6 +64,33 @@ var upsideDownBinaryTree = function(root) {
         curr = next;
     }
     return pre;
+};
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+ var upsideDownBinaryTree = function(root) {
+    if(!root || !root.left){
+        return root;
+    }
+
+    let newRoot = upsideDownBinaryTree(root.left);
+    
+    root.left.left = root.right;
+    root.left.right = root;
+    root.left = null;
+    root.right = null;
+    
+    return newRoot;
 };
 
 //tags: Linkedin
