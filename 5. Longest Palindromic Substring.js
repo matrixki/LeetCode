@@ -59,49 +59,25 @@ function palinDromeCircle(s, left, right){
  * @param {string} s
  * @return {string}
  */
-var longestPalindrome = function(s) {
-
-   var result = '';
-   for(var i =0;i<s.length;i++){
-        if(result.length < 1){
-            result = s[i];
+ var longestPalindrome = function(s) {
+    let maxLen = 0, low;
+    if(s.length<=1){ return s; }
+    for(let i=0;i<s.length-1;i++){
+        //odd
+        findPalindrome(s, i, i);
+        //even
+        findPalindrome(s, i, i+1);
+    }
+    return s.substring(low, low+maxLen);
+    
+    function findPalindrome(s, left, right){
+        while(left>=0 && right<s.length && s[left]===s[right]){
+            left--;
+            right++;
         }
-        if( s[i] === s[i+1] && result.length < 2 ){
-           result = s[i] + s[i+1];
-        }        
-        if(i > 0){
-            var oddStr = s[i], evenStr = '';
-            // even case
-            var j = 1;
-            if(s[i]===s[i+1]){
-                evenStr = s[i] + s[i+1];
-                while( i-j >= 0 && i+j+1 < s.length ){
-                    if( s[i-j] === s[i+j+1] ){
-                        evenStr = s[i-j] + evenStr + s[i+j+1];
-                        j++;                        
-                    }
-                    else{
-                        break;
-                    }
-                }
-            }
-            // odd case
-            j = 1;
-            while( (i-j) >= 0 && (i+j) < s.length ){
-                if(s[i-j] === s[i+j]){
-                    oddStr = s[i-j] + oddStr + s[i+j];
-                    j++;
-                }
-                else{
-                    break;
-                }
-            }
-            var subStr = oddStr.length >= evenStr.length ? oddStr : evenStr;
-            if(subStr.length >= result.length){
-                result = subStr;
-            }            
+        if( right-left-1 > maxLen ){
+            low = left+1;
+            maxLen = right-left-1;
         }
     }
-    return result;
-    
 };
