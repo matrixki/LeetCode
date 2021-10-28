@@ -8,6 +8,9 @@ Given the list [[1,1],2,[1,1]], return 10. (four 1's at depth 2, one 2 at depth 
 
 Example 2:
 Given the list [1,[4,[6]]], return 27. (one 1 at depth 1, one 4 at depth 2, and one 6 at depth 3; 1 + 4*2 + 6*3 = 27)
+
+tags: LinkedIn, Facebook
+
 */
 
 /**
@@ -28,6 +31,18 @@ Given the list [1,[4,[6]]], return 27. (one 1 at depth 1, one 4 at depth 2, and 
  *         ...
  *     };
  *
+ *     Set this NestedInteger to hold a single integer equal to value.
+ *     @return {void}
+ *     this.setInteger = function(value) {
+ *         ...
+ *     };
+ *
+ *     Set this NestedInteger to hold a nested list and adds a nested integer elem to it.
+ *     @return {void}
+ *     this.add = function(elem) {
+ *         ...
+ *     };
+ *
  *     Return the nested list that this NestedInteger holds, if it holds a nested list
  *     Return null if this NestedInteger holds a single integer
  *     @return {NestedInteger[]}
@@ -40,23 +55,22 @@ Given the list [1,[4,[6]]], return 27. (one 1 at depth 1, one 4 at depth 2, and 
  * @param {NestedInteger[]} nestedList
  * @return {number}
  */
-var depthSum = function(nestedList) {
+ var depthSum = function(nestedList) {
+    let result = 0;
+    if(!nestedList){ return result; }
+    helper(nestedList, 1);
     
-   
-    function getTheValue( list, depth ){
-        var result = 0;
-        for(var i=0;i<list.length;i++){
-            var curr = list[i];
+    return result;
+    
+    function helper(nestedList, level){
+        for(let i=0;i<nestedList.length;i++){
+            const curr = nestedList[i];
             if(curr.isInteger()){
-                result += curr.getInteger()*depth;        
+                result += curr.getInteger()*level;
             }
             else{
-                result += getTheValue( curr.getList(), depth+1 );
-            }            
+                helper(curr.getList(), level+1);
+            }
         }
-        return result;
     }
-    
-    return getTheValue(nestedList, 1);
-    
 };
