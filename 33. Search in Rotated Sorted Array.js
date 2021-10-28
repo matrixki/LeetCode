@@ -13,33 +13,32 @@ You may assume no duplicate exists in the array.
  * @param {number} target
  * @return {number}
  */
-var search = function(nums, target) {
-    var start = 0, end = nums.length -1;
-    var mid;
-    while( start < end-1 ){
-        mid = start + Math.floor((end-start)/2);
-        if( nums[start] < nums[mid] ){
-            // 前半段sorted
-            if( nums[start] <= target && nums[mid] >= target ){
-                end = mid;
+ var search = function(nums, target) {
+    let left = 0, right = nums.length-1;
+    while(left<right-1){
+        let mid = left + Math.floor((right-left)/2);
+        if(nums[left]<nums[mid]){
+            // first half sorted
+            if(nums[left]<=target && target <= nums[mid]){
+                right = mid;
             }
             else{
-                start = mid;
+                left = mid;
             }
         }
         else{
-            // 後半段sorted
-            if( nums[mid] <= target && nums[end] >= target ){
-                start = mid;
+            // second half sorted
+            if(nums[mid]<=target && target<=nums[right]){
+                left = mid;
             }
             else{
-                end = mid;
+                right = mid;
             }
         }
     }
-    if( nums[start] === target ){ return start; }
-    else if( nums[end] === target ){ return end; }
-    else{ return -1; }
+    if(nums[left]===target){ return left; }
+    if(nums[right]===target){ return right; }
+    return -1;
 };
 
 //tags: Facebook, Microsoft, Bloomberg, Uber, Linkedin
