@@ -34,79 +34,46 @@ Note:
 1 <= grid[0].length <= 10
 grid[i][j] is only 0, 1, or 2.
 
+tags: Amazon, Microsoft, Oracle, Google, Apple, Facebook, Bloomberg, Walmart Labs, Samsung, VMware
+
 */
 
 /**
  * @param {number[][]} grid
  * @return {number}
  */
-var orangesRotting = function(grid) {
-    let m = grid.length;
-    let n = grid[0].length;
-    let rottenCount = 0;
-    let fresh = [];
-    for(let i=0;i<m;i++){
-        for(let j=0;j<n;j++){
-            if(grid[i][j]===1){
-                let obj = {
-                    x: i,
-                    y: j,
-                    val: 1
-                };
-                fresh.push(obj);
-            }
+ var orangesRotting = function(grid) {
+    let rotten = [], level = 0, fresh = 0;
+    for(let i=0;i<grid.length;i++){
+        for(let j=0;j<grid[0].length;j++){
             if(grid[i][j]===2){
-                rottenCount++;
+                rotten.push([i, j]);
+            }
+            if(grid[i][j]===1){
+                fresh++;
             }
         }
     }
-    if(fresh.length===0){
-        return 0;
-    }
-    if(rottenCount===0){
-        return -1;
-    }
-    let result = 0;
-    while(fresh.length>0){
-        let toUpdate = [];
-        let stillFresh = [];
-        for(let i=0;i<fresh.length;i++){
-            let curr = fresh[i];
-            if( isRotten(curr.x, curr.y) ){
-                toUpdate.push(curr);
+    if(fresh===0){ return 0; }
+    const directions = [ [-1, 0], [1, 0], [0, -1], [0, 1] ];
+    while(rotten.length>0){
+        level++;
+        const size = rotten.length;
+        for(let i=0;i<size;i++){
+            const orange = rotten.shift();
+            for(let dir of directions){
+                let x = orange[0] + dir[0];
+                let y = orange[1] + dir[1];
+                if(x<0 || y<0 || x>=grid.length || y>=grid[0].length || grid[x][y]===0 || grid[x][y]===2){
+                    continue;
+                }
+                grid[x][y] = 2;
+                rotten.push([x,y]);
+                fresh--;
             }
-            else{
-                stillFresh.push(curr);
-            }
         }
-        if(fresh.length===stillFresh.length){
-            return -1;
-        }
-        //update grid
-        for(let j=0;j<toUpdate.length;j++){
-            let curr = toUpdate[j];
-            grid[curr.x][curr.y] = 2;
-        }
-        fresh = stillFresh;
-        result++;
     }
-    return result;
-    
-    function isRotten(x, y){
-        if( x-1>=0 && grid[x-1][y]===2 ){
-            return true;
-        }
-        if( x+1<m && grid[x+1][y]===2 ){
-            return true;
-        }
-        if( y-1>=0 && grid[x][y-1]===2 ){
-            return true;
-        }
-        if( y+1<n && grid[x][y+1]===2 ){
-            return true;
-        }
-        return false;
-    }
+    return fresh === 0 ? level-1 : -1;
 };
 
 //tags: Amazon, Google
