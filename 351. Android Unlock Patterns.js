@@ -48,7 +48,7 @@ tags: Snapchat
     for(let i=0;i<skip.length;i++){
         skip[i] = new Array(10);
     }
-    skip[1][3] = skip[3][1] = 2;
+    skip[1][3] = skip[3][1] = 2; // from 1 to 3, need by pass 2
     skip[1][7] = skip[7][1] = 4;
     skip[3][9] = skip[9][3] = 6;
     skip[7][9] = skip[9][7] = 8;
