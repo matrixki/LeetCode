@@ -37,7 +37,7 @@ Note:
  */
 var kClosest = function(points, K) {
     points.sort(function(a,b){
-        return ( a[0]*a[0] + a[1]*a[1] ) - ( b[0]*b[0] + b[1]*b[1] )
+        return ( a[0]*a[0] + a[1]*a[1] ) - ( b[0]*b[0] + b[1]*b[1] );
     });
     return points.slice(0,K);
 };
