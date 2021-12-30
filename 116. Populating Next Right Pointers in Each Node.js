@@ -32,6 +32,8 @@ After calling your function, the tree should look like:
  / \  / \
 4->5->6->7 -> NULL
 
+tags: Facebook, Microsoft, Amazon, Bloomberg
+
 */
 
 /**
@@ -46,21 +48,21 @@ After calling your function, the tree should look like:
  * @param {TreeLinkNode} root
  * @return {void} Do not return anything, modify tree in-place instead.
  */
-var connect = function(root) {
-    if(!root){ return; }
-    var pre = root;
-    var curr = null;
-    while(pre.left){
-        curr = pre;
-        while(curr){
-            curr.left.next = curr.right;
-            if(curr.next){
-                curr.right.next = curr.next.left;
-            }
-            curr = curr.next;
-        }
-        pre = pre.left;
+ var connect = function(root) {
+  if(!root){ return; }
+  let leftNode = root;
+  while(leftNode.left){
+    let head = leftNode;
+    while(head){
+      head.left.next = head.right;
+      if(head.next){
+        head.right.next = head.next.left;
+      }
+      head = head.next;
     }
+    leftNode = leftNode.left;
+  }
+  return root;
 };
 
 //tags: Microsoft
