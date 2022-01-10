@@ -5,6 +5,9 @@ For example,
 a = "11"
 b = "1"
 Return "100".
+
+tags: Facebook, Google, Adobe, Samsung, Apple, ByteDance
+
 */
 
 /**
@@ -12,27 +15,15 @@ Return "100".
  * @param {string} b
  * @return {string}
  */
-/**
- * @param {string} a
- * @param {string} b
- * @return {string}
- */
-var addBinary = function(a, b) {
-    let aLen = a.length, bLen = b.length;
-    let pointerA = aLen-1, pointerB = bLen-1;
-    let result = '';
-    let overflow = false;
+ var addBinary = function(a, b) {
+    let pointerA = a.length-1, pointerB = b.length-1;
+    let result = '', overflow = false;
     while( pointerA >= 0 || pointerB >=0 ){
         let currA = a[pointerA] ? parseInt(a[pointerA]) : 0;
         let currB = b[pointerB] ? parseInt(b[pointerB]) : 0;
         if(overflow){
             if( (currA+currB+1)>1 ){
-                if( (currA+currB+1)%2===0 ){
-                    result = '0' + result;
-                }
-                else{
-                    result = '1' + result;
-                }
+                result = ((currA+currB+1)%2).toString() + result;
             }
             else{
                 result = (currA+currB+1).toString() + result;
@@ -51,5 +42,5 @@ var addBinary = function(a, b) {
         pointerA--;
         pointerB--;
     }
-    return overflow? '1'+result : result;
+    return overflow? '1'+result : result;   
 };
