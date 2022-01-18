@@ -13,38 +13,32 @@ You may assume pattern contains only lowercase letters, and str contains lowerca
 
 Credits:
 Special thanks to @minglotus6 for adding this problem and creating all test cases.
+
+tags: Amazon, Bolt
+
 */
 
 /**
  * @param {string} pattern
- * @param {string} str
+ * @param {string} s
  * @return {boolean}
  */
-var wordPattern = function(pattern, str) {
-    var strarr = str.split(" ");
-    if( pattern.length !== strarr.length ){ return false; }
-    var lookup1 = new Map();
-    var lookup2 = new Map();
+ var wordPattern = function(pattern, s) {
+    const arr = s.split(" ");
+    if(arr.length !== pattern.length){ return false; }
+    const lookup1 = new Map(), lookup2 = new Map();
+    for(let i=0;i<pattern.length;i++){
+        if( lookup1.has(arr[i]) && lookup1.get(arr[i]) !== pattern[i] ){
+            return false;
+        }
+        lookup1.set(arr[i], pattern[i]);
+    }
     
-    
-    for(var i=0, len=pattern.length;i<len;i++){
-        if( !lookup1.has( strarr[i] ) ){
-            lookup1.set( strarr[i], pattern[i] );
+    for(let i=0;i<pattern.length;i++){
+        if( lookup2.has(pattern[i]) && lookup2.get(pattern[i]) !== arr[i] ){
+            return false;
         }
-        else{
-            if( lookup1.get(strarr[i]) !== pattern[i] ){
-                return false;
-            }
-        }
-        
-        if( !lookup2.has( pattern[i] ) ){
-            lookup2.set( pattern[i], strarr[i] );
-        }
-        else{
-            if( lookup2.get(pattern[i]) !== strarr[i] ){
-                return false;
-            }
-        }
+        lookup2.set(pattern[i], arr[i]);
     }
     return true;
 };
