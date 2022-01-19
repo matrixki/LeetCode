@@ -25,33 +25,27 @@ Output: 3
  * @param {character[][]} grid
  * @return {number}
  */
-var numIslands = function(grid) {
-    var result = 0;
-    var m = grid.length;
-    if( m === 0 ){
-        return 0;
-    }
-    var n = grid[0].length;
-    for(var i=0;i<m;i++){
-        for(var j=0;j<n;j++){
-            if( grid[i][j] === '1' ){
-                calculate(grid, i, j);
+ var numIslands = function(grid) {
+    let result = 0;
+    for(let i=0;i<grid.length;i++){
+        for(let j=0;j<grid[0].length;j++){
+            if(grid[i][j]==="1"){
+                dfs(grid, i, j);
                 result++;
             }
         }
     }
     return result;
-    
-    
-    function calculate(grid, i, j){
-        if( i<0 || j<0 || i>=m || j>=n || grid[i][j] === '0'){
-            return;
-        }
-        grid[i][j] = '0';
-        calculate( grid, i+1, j );
-        calculate( grid, i-1, j );
-        calculate( grid, i, j+1 );
-        calculate( grid, i, j-1 );
+};
+
+const dirs = [[1, 0], [-1, 0], [0, 1], [0, -1]];
+const dfs = (grid, x, y) => {
+    if(x<0 || x>=grid.length || y<0 || y>=grid[0].length || grid[x][y]==="0"){
+        return;
+    }
+    grid[x][y] = "0";
+    for(let i=0;i<dirs.length;i++){
+        dfs(grid, x+dirs[i][0], y+dirs[i][1]);
     }
 };
 
