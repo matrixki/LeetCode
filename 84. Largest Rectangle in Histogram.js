@@ -59,3 +59,29 @@ tags: Amazon, Microsoft, Uber, Adobe, Facebook, Google, Snapchat, HBO, ByteDance
     }
     return result;
 };
+
+//using stack
+/**
+ * @param {number[]} heights
+ * @return {number}
+ */
+ var largestRectangleArea = function(heights) {
+    const len = heights.length;
+    if (!heights || len === 0){
+        return 0;
+    }
+    let stack = [], i=0, result = 0;
+    while(i<len){
+        while(stack.length !== 0 && heights[i]<heights[stack[stack.length-1]]){
+            const leftIndex = stack.pop();
+            result = Math.max(result, heights[leftIndex]*( stack.length === 0 ? i : i - stack[stack.length-1] -1 ));
+        }
+        stack.push(i);
+        i++;
+    }
+    while(stack.length > 0){
+        const leftIndex = stack.pop();
+        result = Math.max(result, heights[leftIndex]*( stack.length === 0 ? len : len - stack[stack.length-1] -1 ));
+    }
+    return result;
+};
