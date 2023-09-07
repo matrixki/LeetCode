@@ -103,8 +103,6 @@ tags: Facebook, Google, Microsoft
  */
  var cleanRoom = function(robot) {
     let visited = new Set();
-    let dir = [[-1,0], [1,0], [1,0], [0,-1]];
-    let curr_dir = 0;
     backtrack(robot, visited, 0, 0, 0);
     
     
@@ -121,16 +119,16 @@ tags: Facebook, Google, Microsoft
                 let i = x, j = y;
                 switch(dir){
                     case 0:
-                        i = x-1; // up
+                        i = y+1; // up
                         break;
                     case 1:
-                        j = y+1; // right
+                        j = x+1; // right
                         break;
                     case 2:
-                        i = x+1; //down
+                        i = y-1; //down
                         break;
                     case 3:
-                        j = y-1; //left
+                        j = x-1; //left
                         break;
                 }
                 backtrack(robot, visited, i, j, dir);
