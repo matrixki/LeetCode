@@ -18,29 +18,23 @@ For example, given n = 3, a solution set is:
  * @return {string[]}
  */
 var generateParenthesis = function(n) {
-
-    var result = [];
-    var temp = '';
-    makeParen(n,0,0,temp,result);
+    let result = [];
+    makeParenthesis(n, 0, 0, "", result);
     return result;
+};
 
-  
-    function makeParen( number, left, right, temp, result ){
-        if( number === left && number === right ){
-            result.push(temp);
-            return;
-        }
-        
-        if( left < number ){
-            temp = temp + '(';
-            makeParen( number, left+1, right, temp, result );
-            temp = temp.substring(0, temp.length -1);
-        }
-        
-        if( right < left ){
-            temp = temp + ')';
-            makeParen( number, left, right+1, temp, result );
-            temp = temp.substring(0, temp.length -1);
-        }
-    }    
+const makeParenthesis = (num, left, right, temp, result) => {
+    if (num === left && num === right) {
+        result.push(temp);
+    }
+    if (left < num) {
+        temp += "(";
+        makeParenthesis(num, left+1, right, temp, result);
+        temp = temp.substring(0, temp.length -1);
+    }
+
+    if (right < left) {
+        temp += ")";
+        makeParenthesis(num, left, right+1, temp, result);
+    }
 };
