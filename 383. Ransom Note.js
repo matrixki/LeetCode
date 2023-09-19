@@ -17,28 +17,24 @@ canConstruct("aa", "aab") -> true
  * @return {boolean}
  */
 var canConstruct = function(ransomNote, magazine) {
-    var lookup = new Map();
-    for( word of magazine ){
-        if( lookup.has( word ) ){
-            lookup.set( word, lookup.get(word) + 1 );
-        }
-        else{
-            lookup.set( word, 1 );
+    let lookup = new Map();
+    for (let i=0;i<magazine.length;i++) {
+        const letter = magazine[i];
+        if (!lookup.has(letter)) {
+            lookup.set(letter, 1);
+        } else {
+            lookup.set( letter, lookup.get(letter)+1 );
         }
     }
-    for( w of ransomNote ){
-        if( lookup.has(w) ){
-            var count = lookup.get(w) - 1;
-            if( count < 0 ){
-                return false;
-            }
-            else{
-                lookup.set( w, count );
-            }
-        }
-        else{
+    for (let j=0;j<ransomNote.length;j++) {
+        const letter = ransomNote[j];
+        if (!lookup.has(letter)) {
             return false;
         }
+        if (lookup.get(letter) < 1) {
+            return false;
+        }
+        lookup.set(letter, lookup.get(letter)-1);
     }
     return true;
 };
