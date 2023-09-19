@@ -43,4 +43,22 @@ var postorderTraversal = function(root) {
     return result;
 };
 
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var postorderTraversal = function(root) {
+    let result = [];
+    traverse(root, result);
+    return result;
+};
+
+const traverse = (node, result) => {
+    if(!node){ return; }
+    traverse(node.left, result);
+    traverse(node.right, result);
+    result.push(node.val);
+};
+
+
 //tags: Facebook, Amazon
