@@ -43,4 +43,22 @@ var preorderTraversal = function(root) {
     return result;
 };
 
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var preorderTraversal = function(root) {
+    let result = [];
+    traverse(root, result);
+    return result;
+};
+
+const traverse = (node, result) => {
+    if(!node){ return; }
+    result.push(node.val);
+    traverse(node.left, result);
+    traverse(node.right, result);
+};
+
+
 //tags: Cisco, Google
