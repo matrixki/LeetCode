@@ -40,5 +40,23 @@ var inorderTraversal = function(root) {
     return result;
 };
 
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var inorderTraversal = function(root) {
+    let result = [];
+    traverse(root, result);
+    return result;
+};
+
+const traverse = (node, result) => {
+    if(!node){ return; }
+    traverse(node.left, result);
+    result.push(node.val);
+    traverse(node.right, result);
+};
+
+
 //tags: Microsoft, Facebook, Adobe, Amazon, Google, Uber, Alibaba
 
