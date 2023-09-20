@@ -59,16 +59,19 @@ function isSameTree(p, q){
 
 
 // another way
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
 var isSymmetric = function(root) {
-    return checkLeftRight(root, root);
+    return checkSymmetric(root, root);
 };
 
-function checkLeftRight(p, q){
-    if(p===null&&q===null) return true;
-    if( (!p&&q) || (p&&!q) ) return false;
-    
-    return (p.val===q.val)&&checkLeftRight(p.left, q.right)&&checkLeftRight(p.right, q.left);
-}
+const checkSymmetric = (left, right) => {
+    if (!left && !right) { return true; }
+    if (!left && right || left && !right) { return false; }
+    return left.val === right.val && checkSymmetric(left.right, right.left) && checkSymmetric(left.left, right.right);
+};
 
 //tags: Amazon, Linkedin, Facebook, Google, Adobe, Apple, Oracle, Bloomberg
 
