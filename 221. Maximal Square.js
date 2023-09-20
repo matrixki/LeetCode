@@ -18,34 +18,24 @@ Output: 4
  * @return {number}
  */
 var maximalSquare = function(matrix) {
-    var m = matrix.length;
-    if(!m){ return 0; }
-    var n = matrix[0].length;
-    var size = [];
-    for(var i=0;i<m;i++){
-        size[i] = [];
-        for(var j=0;j<n;j++){
-            size[i][j] = 0;
-        }
-    }
-    var maxsize = 0;
-    for(var j=0;j<n;j++){
-        size[0][j] = matrix[0][j] - '0';
-        maxsize = Math.max(maxsize, size[0][j]);
-    }
-    for(var i=0;i<m;i++){
-        size[i][0] = matrix[i][0] - '0';
-        maxsize = Math.max(maxsize, size[i][0]);
-    }
-    for(var i=1;i<m;i++){
-        for(var j=1;j<n;j++){
-            if(matrix[i][j] === '1'){
-                size[i][j] = Math.min( size[i-1][j-1], Math.min( size[i-1][j], size[i][j-1] ) ) +1;
-                maxsize = Math.max(maxsize, size[i][j]);
+    const m = matrix.length, n = matrix[0].length;
+    let dp = [...Array(m)].map(()=>{ return Array(n).fill(0); });
+    let side = 0;
+    for(let i=0;i<m;i++){
+        for(let j=0;j<n;j++){
+            if(i===0){
+                dp[0][j] = matrix[0][j];
             }
+            if(j===0){
+                dp[i][0] = matrix[i][0];
+            }
+            if(matrix[i][j] > 0 && i>0&&j>0){
+                dp[i][j] = Math.min(dp[i-1][j], dp[i][j-1], dp[i-1][j-1]) + 1;
+            }
+            side = Math.max(side, dp[i][j]);
         }
     }
-    return maxsize*maxsize;
+    return side*side;
 };
 
 //tags: Facebook, Apple, Airbnb
