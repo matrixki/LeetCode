@@ -42,4 +42,7 @@ var findDuplicate = function(nums) {
     return low;
 };
 
+// binary search: if it's a perfect number list, for example [1, 2, 3, 4], the count for less than and equal to the number will be the same as the number itself count(num <= m)
+// so we need to find the smallest number which count(num <= m) > m 
+
 //tags: Microsoft, Google, Amazon
