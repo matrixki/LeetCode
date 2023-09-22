@@ -101,46 +101,42 @@ tags: Facebook, Google, Microsoft
  * @param {Robot} robot
  * @return {void}
  */
- var cleanRoom = function(robot) {
+var cleanRoom = function(robot) {
     let visited = new Set();
-    backtrack(robot, visited, 0, 0, 0);
-    
-    
-    function backtrack(robot, visited, x, y, dir){
-        let temp = `${x}-${y}`;
-        if(visited.has(temp)){
-            return;
-        }
-        robot.clean();
-        visited.add(temp);
-        for(let i=0;i<4;i++){
-            // four directions
-            if(robot.move()){
-                let i = x, j = y;
-                switch(dir){
-                    case 0:
-                        i = y+1; // up
-                        break;
-                    case 1:
-                        j = x+1; // right
-                        break;
-                    case 2:
-                        i = y-1; //down
-                        break;
-                    case 3:
-                        j = x-1; //left
-                        break;
-                }
-                backtrack(robot, visited, i, j, dir);
-                robot.turnLeft();
-                robot.turnLeft();
-                robot.move();
-                robot.turnRight();
-                robot.turnRight();
+    backtrack(robot, visited, 0, 0, 0);   
+};
+
+const backtrack = (robot, visited, x, y, dir) => {
+    let temp =`${x}-${y}`;
+    if (visited.has(temp)) { return; }
+    robot.clean();
+    visited.add(temp);
+    for (let k=0;k<4;k++) {
+        if (robot.move()) {
+            let i = x, j = y;
+            switch (dir) {
+                case 0: //up
+                    j = y-1;
+                    break;
+                case 1: //right
+                    i = x+1;
+                    break;
+                case 2: //down
+                    j = y+1;
+                    break;
+                case 3: //left
+                    i = x-1;
+                    break;
             }
+            backtrack(robot, visited, i, j, dir);
             robot.turnRight();
-            dir++;
-            dir %= 4;
+            robot.turnRight();
+            robot.move();
+            robot.turnLeft();
+            robot.turnLeft();
         }
+        robot.turnRight();
+        dir++;
+        dir%=4;
     }
 };
