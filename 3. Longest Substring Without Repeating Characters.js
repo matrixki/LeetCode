@@ -20,7 +20,7 @@ var lengthOfLongestSubstring = function(s) {
     var strlen = s.length;
     var substr = '';
     
-    while( start < strlen && end < strlen ){
+    while( end < strlen ){
         if( substr.indexOf(s[end]) === -1 ){ // if substr doesn't contain
             substr = substr + s[end];
             end++;
