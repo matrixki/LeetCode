@@ -44,20 +44,20 @@ tags: Google, tiktok, Two Sigma, Mathworks, Lucid
  * @param {string[]} words
  * @return {number}
  */
- var longestStrChain = function(words) {
-    words.sort((a, b)=>{
+var longestStrChain = function(words) {
+    words.sort( (a, b) => {
         return a.length - b.length;
-    });
-    let dp = new Map(), result = 0;
-    for(let i=0;i<words.length;i++){
+    } );
+    let lookup = new Map(), result = 0;
+    for (let i=0;i<words.length;i++) {
         const word = words[i];
         let max = 0;
-        for(let j=0;j<word.length;j++){
-            // delete one character
-            let str = word.substring(0,j) + word.substring(j+1);
-            max = Math.max( max, (dp.get(str) || 0)+1 );
+        for (let j=0;j<word.length;j++) {
+            // delete one character and check to see if it's in the map
+            const str = word.substring(0,j) + word.substring(j+1, word.length);
+            max = Math.max( max, (lookup.get(str) || 0) +1 );
         }
-        dp.set(word, max);
+        lookup.set(word, max);
         result = Math.max(result, max);
     }
     return result;
