@@ -25,12 +25,12 @@ Output: 3
  * @param {character[][]} grid
  * @return {number}
  */
- var numIslands = function(grid) {
+var numIslands = function(grid) {
     let result = 0;
-    for(let i=0;i<grid.length;i++){
-        for(let j=0;j<grid[0].length;j++){
-            if(grid[i][j]==="1"){
-                dfs(grid, i, j);
+    for (let i=0;i<grid.length;i++) {
+        for (let j=0;j<grid[0].length;j++) {
+            if (grid[i][j] === "1") {
+                traverse(grid, i, j);
                 result++;
             }
         }
@@ -38,14 +38,14 @@ Output: 3
     return result;
 };
 
-const dirs = [[1, 0], [-1, 0], [0, 1], [0, -1]];
-const dfs = (grid, x, y) => {
-    if(x<0 || x>=grid.length || y<0 || y>=grid[0].length || grid[x][y]==="0"){
+const dirs = [[1,0], [-1, 0], [0, 1], [0, -1]];
+const traverse = (grid, x, y) => {
+    if ( x<0 || x>=grid.length || y<0 || y>=grid[0].length || grid[x][y] === "0" ) {
         return;
     }
     grid[x][y] = "0";
-    for(let i=0;i<dirs.length;i++){
-        dfs(grid, x+dirs[i][0], y+dirs[i][1]);
+    for (let dir of dirs) {
+        traverse(grid, x+dir[0], y+dir[1]);
     }
 };
 
