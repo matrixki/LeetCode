@@ -28,21 +28,18 @@ Output: false
  * @return {boolean}
  */
 var wordBreak = function(s, wordDict) {
-    var dp = [];
-    var len = s.length;
-    dp.length = len+1;
-    dp.fill(false);
+    let dp = new Array(s.length+1).fill(false);
     dp[0] = true;
-    for(var i=0;i<len;i++){
-        for(var j=i;j>=0;j--){
-            var str = s.substring(j, i+1);
-            if( dp[j] && wordDict.indexOf(str)!==-1 ){
+    for (let i=0;i<s.length;i++) {
+        for (let j=i;j>=0;j--) {
+            const str = s.substring(j, i+1);
+            if (dp[j] && wordDict.indexOf(str) !==-1) {
                 dp[i+1] = true;
                 break;
             }
         }
     }
-    return dp[len];
+    return dp[s.length];
 };
 
 //tags: Google, Facebook, Amazon, Bloomberg, Uber, Yahoo, Pocket Gems, Square, Coupang
