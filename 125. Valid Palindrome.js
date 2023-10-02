@@ -16,15 +16,15 @@ For the purpose of this problem, we define empty string as valid palindrome.
  * @return {boolean}
  */
 var isPalindrome = function(s) {
-    var str = s.replace(/[^a-z0-9]/ig,"").toLowerCase();
-    var start =0, end = str.length-1
+    const str = s.replace(/[^a-z0-9]/ig, "").toLowerCase();
+    let start =0, end = str.length-1;
     while(start<end){
-        if( str[start] !== str[end] ){
-            return false;
-        }
-        start++;
-        end--;
-    }
+      if (str[start] !== str[end]) {
+        return false;
+      }
+      start++, end--;
+    }    
     return true;
-    
 };
+
+//tags: Facebook, Yandex, Adobe, Apple, Yandex
