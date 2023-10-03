@@ -29,14 +29,14 @@ var twoSum = function(nums, target) {
 
 // use a lookup to track visited
 var twoSum = function(nums, target) {
-   var result = [];
-   var lookup = [];
-   for(var i=0;i<nums.length;i++){
-       if( lookup[target - nums[i]] !== undefined ){
-           result.push(i);
-           result.push(lookup[target - nums[i]]);
-           return result;
-       }
-       lookup[ nums[i] ] = i;
-   }
+    let result = [];
+    let lookup = new Map();
+    for(let i=0;i<nums.length;i++){
+        if( lookup.has(target-nums[i]) ){
+            result.push(i);
+            result.push(lookup.get(target - nums[i]));
+            return result;
+        }
+        lookup.set( nums[i], i);
+    }
 };
