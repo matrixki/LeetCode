@@ -16,29 +16,20 @@ Merge two sorted linked lists and return it as a new list. The new list should b
  * @return {ListNode}
  */
 var mergeTwoLists = function(l1, l2) {
-    var newNode = new ListNode(null);
-    var head = newNode;
-    
-    if( l1 === null ){ return l2; }
-    else if( l2 === null ){ return l1; }
-    
-    while( l1 !== null && l2 !== null ){
-        if( l1.val < l2.val ){
-            newNode.next = new ListNode(l1.val);
-            l1 = l1.next;
+    let head = new ListNode();
+    let curr = head;
+    while (list1 && list2) {
+        if (list1.val < list2.val) {
+            curr.next = list1;
+            list1 = list1.next;
+        } else {
+            curr.next = list2;
+            list2 = list2.next;
         }
-        else{
-            newNode.next = new ListNode(l2.val);
-            l2 = l2.next;
-        }
-        newNode = newNode.next;
+        curr = curr.next;
     }
-    if( l1 === null ){
-        newNode.next = l2;
-    }
-    else if( l2 === null ){
-        newNode.next = l1;
-    }    
-
+    curr.next = list1 || list2;
     return head.next;
 };
+
+//tags: Amazon, Apple, Adobe, Google, Microsoft, Uber, Yahoo
