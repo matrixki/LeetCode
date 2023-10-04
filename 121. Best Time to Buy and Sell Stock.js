@@ -20,13 +20,12 @@ In this case, no transaction is done, i.e. max profit = 0.
  * @return {number}
  */
 var maxProfit = function(prices) {
-    let min = Math.pow(2,32)-1;
-    let max = 0;
-    for(let i=0;i<prices.length;i++){
-        min = Math.min(min, prices[i]);
-        max = Math.max(max, prices[i]-min);
+    let min = Number.MAX_SAFE_INTEGER, result = 0;
+    for (let price of prices) {
+        min = Math.min(min, price);
+        result = Math.max(result, price-min);
     }
-    return max;
+    return result;
 };
 
 //tags: Facebook, Amazon, Bloomberg, Google, Microsoft, Adobe, Goldman Sachs, DoorDash, Hulu, Morgan Stanley, Tableau, JPMorgan
