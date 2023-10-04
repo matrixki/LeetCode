@@ -45,3 +45,26 @@ var isAnagram = function(s, t) {
     }
     return Object.keys(lookup).length > 0 ? false : true; 
 };
+
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isAnagram = function(s, t) {
+    let lookup = new Map();
+    for (let i=0;i<s.length;i++) {
+        lookup.set(s[i], lookup.has(s[i]) ? lookup.get(s[i])+1 : 1);
+    }
+    for (let i=0;i<t.length;i++) {
+        if (!lookup.has(t[i])) { return false; }
+        lookup.set(t[i], lookup.get(t[i])-1);
+    }
+    const lookupArr = Array.from(lookup).map((item)=>item[1]);
+    for (let i=0;i<lookupArr.length;i++) {
+        if (lookupArr[i] !== 0) { return false; }
+    }
+    return true;
+};
+
+//tags: Amazon, Microsoft, Adobe, Google, Bloomberg
