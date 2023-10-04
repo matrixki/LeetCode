@@ -60,4 +60,26 @@ var floodFill = function(image, sr, sc, newColor) {
     }
 };
 
-//tags: Facebook
+/**
+ * @param {number[][]} image
+ * @param {number} sr
+ * @param {number} sc
+ * @param {number} color
+ * @return {number[][]}
+ */
+var floodFill = function(image, sr, sc, color) {
+    traverse(image, sr, sc, color, image[sr][sc]);
+    return image;
+};
+
+const traverse = (image, x, y, color, prev) => {
+    if (x<0 || x>=image.length || y<0 || y>=image[0].length || image[x][y] === color || image[x][y] !== prev) { return; }
+    image[x][y] = color;
+    traverse(image, x-1, y, color, prev);
+    traverse(image, x+1, y, color, prev);
+    traverse(image, x, y-1, color, prev);
+    traverse(image, x, y+1, color, prev);
+};
+
+
+//tags: Facebook, Amazon, Apple, Microsoft, Google, Bloomberg
