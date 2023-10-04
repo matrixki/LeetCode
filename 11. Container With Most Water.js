@@ -9,16 +9,17 @@ Note: You may not slant the container and n is at least 2.
  * @return {number}
  */
 var maxArea = function(height) {
-    var left = 0, right = height.length-1, result = 0;
-    while(left<right){
-        var currentArea = Math.min(height[left], height[right])*(right-left);
-        result = currentArea > result ? currentArea : result;
-        if( height[left] < height[right] ){
+    let left = 0, right = height.length-1, result = 0;
+    while (left < right) {
+        const currArea = Math.min(height[left], height[right])*(right-left);
+        result = Math.max(currArea, result);
+        if (height[left] < height[right]) {
             left++;
-        }
-        else{
+        } else {
             right--;
         }
     }
     return result;
 };
+
+//tags: Amazon, Microsoft, Adobe, Yahoo, Apple, Google
