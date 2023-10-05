@@ -6,9 +6,10 @@ For this problem, a height-balanced binary tree is defined as a binary tree in w
 
 /**
  * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
  * }
  */
 /**
@@ -16,29 +17,19 @@ For this problem, a height-balanced binary tree is defined as a binary tree in w
  * @return {boolean}
  */
 var isBalanced = function(root) {
-  
-    if( !root || ( !root.left && !root.right ) ){
-        return true;
-    }
-    
-    let dl = maxDepth(root.left);
-    let dr = maxDepth(root.right);
-    
-    let heightBalanced = Math.abs(dl-dr) <= 1;
-    
-    return heightBalanced && isBalanced(root.left) && isBalanced(root.right);
-    
-    function maxDepth(node){
-        if(!node) return 0;
-        let lc = 1, rc = 1;
-        if(node.left){
-            lc += maxDepth(node.left);
-        }
-        if(node.right){
-            rc += maxDepth(node.right);
-        }
-        return Math.max(lc, rc);
-    }
+    if (!root) { return true };
+    return (Math.abs(traverse(root.left, 1) - traverse(root.right, 1)) <= 1) && isBalanced(root.left) && isBalanced(root.right);
 };
 
+const traverse = (node) => {
+    if (!node) { return 0; }
+    let leftCount = 1, rightCount = 1;
+    if (node.left) {
+        leftCount += traverse(node.left);
+    }
+    if (node.right) {
+        rightCount += traverse(node.right);
+    }
+    return Math.max(leftCount, rightCount);
+};
 //tags: Google, Facebook
