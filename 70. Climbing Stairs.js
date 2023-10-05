@@ -11,16 +11,13 @@ Note: Given n will be a positive integer.
  * @return {number}
  */
 var climbStairs = function(n) {
-    if(n===1){ 
-        return 1; 
-    }
-    else if(n===2){ 
-        return 2; 
-    }
-    let lookup = [1,2];
-    for(let i=2;i<n;i++){
-        lookup[i] = lookup[i-1] + lookup[i-2];    
+    let lookup = [1, 2];
+    if (n<=2) { return lookup[n-1]; }
+    // dp: n(3) = n(2) + n(1)
+    for (let i=2;i<=n;i++) {
+        lookup[i] = lookup[i-1] + lookup[i-2];
     }
     return lookup[n-1];
 };
-// dynamic programming
+
+//tags: Amazon, Google, Adobe, Bloomberg, Apple
