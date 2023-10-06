@@ -19,13 +19,12 @@ A linked list can be reversed either iteratively or recursively. Could you imple
  * @return {ListNode}
  */
 var reverseList = function(head) {
-    var prev = null;
-    var cur = head;
-    while( cur !== null ){
-        var temp = cur;
-        cur = cur.next;
-        temp.next = prev;
-        prev = temp;
+    let prev = null, curr = head;
+    while (curr) {
+        const next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
     }
     return prev;
 };
