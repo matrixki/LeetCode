@@ -7,14 +7,12 @@ Given an array of integers, find if the array contains any duplicates. Your func
  * @return {boolean}
  */
 var containsDuplicate = function(nums) {
-    var lookup = new Set();
-    for( var i=0, len = nums.length;i<len;i++ ){
-        if( lookup.has(nums[i]) ){
-            return true;
-        }
-        else{
-            lookup.add(nums[i]);
-        }
+    let lookup = new Set();
+    for (num of nums) {
+        if (lookup.has(num)) { return true; }
+        lookup.add(num);
     }
     return false;
 };
+
+//tags: Apple, Google, Amazon
