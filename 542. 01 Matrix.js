@@ -133,4 +133,4 @@ const hasZeroNeighbor = (mat, x, y) => {
     }
 };
 
-//tags: Google
+//tags: Google, Amazon, Microsoft, Apple
