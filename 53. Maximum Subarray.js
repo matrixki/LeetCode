@@ -15,12 +15,12 @@ If you have figured out the O(n) solution, try coding another solution using the
  * @return {number}
  */
 var maxSubArray = function(nums) {
-    let dp = [];
-    dp[0] = nums[0];
-    let result = nums[0];
-    for(let i=1;i<nums.length;i++){
-        dp[i] = Math.max( dp[i-1]+nums[i], nums[i] );
-        result = Math.max( result, dp[i] );
+    if (nums.length === 1) { return nums[0]; }
+    let lookup = [nums[0]], result = nums[0];
+    for (let i=1;i<nums.length;i++) {
+        const temp = nums[i]+lookup[i-1];
+        lookup[i] = Math.max(temp, nums[i]);
+        result = Math.max(result, lookup[i]);
     }
     return result;
 };
