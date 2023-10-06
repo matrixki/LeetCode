@@ -16,22 +16,13 @@ The maximum depth is the number of nodes along the longest path from the root no
  * @return {number}
  */
 var maxDepth = function(root) {
-    if(!root){ return 0; }
-    if(root && !root.left && !root.right ){ return 1; }
-    
-    return goDeeper(root);
-    
-    function goDeeper(node){
-        if(!node){
-            return 0;
-        }
-        let lc = 1, rc = 1;
-        if(node.left){
-            lc += goDeeper(node.left);
-        }
-        if(node.right){
-            rc += goDeeper(node.right);
-        }
-        return Math.max(lc,rc);
-    }  
+    if (!root) { return 0; }
+    return traverse(root, 0);
 };
+
+const traverse = (node, depth) => {
+    if (!node) { return depth; }
+    return Math.max(traverse(node.left, depth+1), traverse(node.right, depth+1));
+};
+
+//tags: Apple, Google, Adobe 
