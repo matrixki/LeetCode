@@ -15,24 +15,20 @@ Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer 
  * @return {number}
  */
 var lengthOfLongestSubstring = function(s) {
-
-    var start = 0, end = 0, max = 0;
-    var strlen = s.length;
-    var substr = '';
-    
-    while( end < strlen ){
-        if( substr.indexOf(s[end]) === -1 ){ // if substr doesn't contain
-            substr = substr + s[end];
-            end++;
-            max = Math.max(max, end-start);
-        }        
-        else{ // if substr contain, drop top character
-            substr = substr.substring(1);
+    let start = 0, end = 0, result = 0;
+    const len = s.length;
+    let subStr = "";
+    while (start < len && end < len) {
+        if (subStr.indexOf(s[end]) !== -1) {
+            subStr = subStr.substring(1);
             start++;
+        } else {
+            subStr = subStr + s[end];
+            end++;
+            result = Math.max(subStr.length, result);
         }
     }
-    
-    return max;
+    return result;
 };
 
 //tags: Amazon, Bloomberg, Facebook, Adobe, Tencent, Microsoft, Apple, Alibaba, Baidu, Google, Yelp, ebay
