@@ -15,23 +15,17 @@ Output: index1=1, index2=2
  * @return {number[]}
  */
 var twoSum = function(numbers, target) {
-    var results = [];
-    var left = 0, right = numbers.length -1;
-    while( left<right ){
-        var addUp = numbers[left] + numbers[right];
-        if(addUp == target){
-            results.push(left+1, right+1);
-            return results;
-        }
-        else if(addUp > target){
-            right--;
-        }
-        else{
-            left++;
+    let start = 0, end = numbers.length-1;
+    while (start < end) {
+        const curr = numbers[start] + numbers[end];
+        if (curr === target) {return [start+1, end+1];}
+        if (curr<target) {
+            start++;
+        } else {
+            end--;
         }
     }
-    return results;
 };
 
-//tags: Amazon, Microsoft
+//tags: Amazon, Microsoft, Apple, Bloomberg
 
