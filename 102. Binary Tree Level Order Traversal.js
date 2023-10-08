@@ -29,24 +29,15 @@ return its level order traversal as:
  */
 var levelOrder = function(root) {
     let result = [];
-    if(!root){ return result; }
-    helper(root, 0);
+    traverse(root, 0, result);
     return result;
-    function helper(node, level){
-        if(!node){
-            return;
-        }
-        if(!result[level]){
-            result[level] = [];    
-        }
-        result[level].push(node.val);
-        if(node.left){
-            helper(node.left, level+1);
-        }
-        if(node.right){
-            helper(node.right, level+1);
-        }
-    }
+};
+
+const traverse = (node, level, result) => {
+    if (!node) {return;}
+    result[level] ? result[level].push(node.val) : result[level] = [node.val];
+    traverse(node.left, level+1, result);
+    traverse(node.right, level+1, result);
 };
 
 //tags: Facebook, Microsoft, Amazon, Bloomberg, Linkedin, Apple, Uber, Oracle, Walmart Labs
