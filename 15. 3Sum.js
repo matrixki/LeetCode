@@ -17,34 +17,26 @@ A solution set is:
  * @return {number[][]}
  */
 var threeSum = function(nums) {
-    var result = [];
-    if( nums.length < 3 ){
-        return result;
-    }    
-    nums.sort(function(a, b){return a-b});
-    for( var i=0;i<nums.length-2;i++ ){
-        var j = i+1;
-        var k = nums.length-1;
-        while( j<k ){
-            if( nums[i]+nums[j]+nums[k] === 0 ){
-                result.push([nums[i],nums[j],nums[k]]);
-                j++;
-                k--;
-                while( j<k && nums[j] === nums[j-1] ){
-                    j++
-                }
-                while( j<k && nums[k] === nums[k+1] ){
-                    k--;
-                }
-            }
-            else if( nums[i]+nums[j]+nums[k] < 0 ){
-                j++;
-            }
-            else{
-                k--;
+    let result = [];
+    nums.sort((a, b)=>{
+        return a-b;
+    }); // O(n*log(n))
+    for (let i=0, len=nums.length;i<len-2;i++) { // two pointers: O(n*n)
+        let left = i+1, right = len-1;
+        while (left<right) {
+            if ( nums[i] + nums[left] + nums[right] === 0) {
+                result.push([nums[i], nums[left], nums[right]]);
+                left++;
+                right--;
+                while (nums[left] === nums[left-1]) { left++; }
+                while (nums[right] === nums[right+1]) { right--; }
+            } else if (nums[i] + nums[left] + nums[right] > 0) {
+                right--;
+            } else {
+                left++;
             }
         }
-        while( i<nums.length-1 && nums[i]===nums[i+1] ){
+        while (i<len-1 && nums[i] === nums[i+1]) {
             i++;
         }
     }
