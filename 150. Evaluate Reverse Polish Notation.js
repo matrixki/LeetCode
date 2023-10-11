@@ -36,28 +36,28 @@ Explanation:
  * @return {number}
  */
 var evalRPN = function(tokens) {
-    var stack = [];
-    for(var i=0, len=tokens.length;i<len;i++){
-        switch(tokens[i]){
-            case '+':
+    let stack = [];
+    for (let token of tokens) {
+        switch (token) {
+            case "+":
                 stack.push( stack.pop() + stack.pop() );
                 break;
-            case '-':
-                stack.push( -stack.pop() + stack.pop() );
+            case "-":
+                stack.push( -1*stack.pop() + stack.pop() );
                 break;
-            case '*':
+            case "*":
                 stack.push( stack.pop() * stack.pop() );
                 break;
-            case '/':
-                var bottom = stack.pop();
-                var up = stack.pop();
-                stack.push( parseInt(up/bottom) );
+            case "/":
+                const bottom = stack.pop();
+                const top = stack.pop();
+                stack.push( parseInt(top/bottom) );
                 break;
-            default: 
-                stack.push( parseInt(tokens[i]));
+            default:
+                stack.push( parseInt(token) );
         }
     }
     return stack.pop();
 };
 
-//tags: Linkedin
+//tags: Linkedin, Google, Yandex, Citadel
