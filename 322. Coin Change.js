@@ -20,18 +20,16 @@ You may assume that you have an infinite number of each kind of coin.
  * @return {number}
  */
 var coinChange = function(coins, amount) {
-    var dp = [];
-    dp.length = amount+1;
-    dp.fill(amount+1);
+    let dp = new Array(amount+1).fill(amount+1);
     dp[0] = 0;
-    for(var i=0;i<=amount;i++){
-        for(var j=0, len=coins.length;j<len;j++){
-            if(coins[j]<=i){
+    for (let i=0;i<=amount;i++) {
+        for (let j=0;j<coins.length;j++) {
+            if (i>=coins[j]) {
                 dp[i] = Math.min(dp[i], dp[i-coins[j]]+1);
             }
         }
     }
-    return dp[amount]>amount ? -1 : dp[amount];
+    return dp[amount] > amount ? -1 : dp[amount];
 };
 
-//tags: Linkedin, Amazon, Microsoft, Walmart Labs, Bloomberg, Airbnb
+//tags: Linkedin, Amazon, Microsoft, Walmart Labs, Bloomberg, Airbnb, Apple, Adobe
