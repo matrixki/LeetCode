@@ -30,44 +30,40 @@ You may assume that there are no duplicate edges in the input prerequisites.
  * @return {boolean}
  */
 var canFinish = function(numCourses, prerequisites) {
-    var graph = [];
-    for(var i=0;i<numCourses;i++){
-        graph[i] = [];
+    let graph = [];
+    for (let i=0;i<prerequisites.length;i++) {
+        const curr = prerequisites[i][0];
+        const prev = prerequisites[i][1];
+        graph[curr] ? graph[curr].push(prev) : graph[curr] = [prev];
     }
-        
-    for(var i=0, len=prerequisites.length;i<len;i++){
-        var curr = prerequisites[i][0];
-        var pre = prerequisites[i][1];
-        graph[curr].push(pre);
-    }
-    
-    var visited = [];
-    for(var i=0;i<numCourses;i++){
-        if( dfs(i, graph, visited) ){
+    let visited = [];
+    for (let key in graph) {
+        if (!dfs(graph, key, visited)) {
             return false;
         }
     }
     return true;
-    
-    function dfs(curr, graph, visited){
-        //1 means visiting
-        //2 means visited
-        if( visited[curr] === 1 ){
-            return true;
-        }
-        if( visited[curr] === 2 ){
-            return false;
-        }
-        visited[curr] = 1;
-        for( next of graph[curr] ){
-            if( dfs(next, graph, visited) ){
-                return true;
-            }
-        }
-        visited[curr] = 2;
-        return false;
-    }
-    
 };
 
-//tags: Apple, Uber, Zenifits, Yelp
+const dfs = (graph, index, visited) => {
+    if (visited[index]) {
+        return false;
+    }
+    if (graph[index]) {
+        if (graph[index].length === 0) {
+            return true;
+        }
+
+        visited[index] = true;
+        for (let val of graph[index]) {
+            if (!dfs(graph, val, visited)) {
+                return false;
+            }
+        }
+        visited[index] = false;
+        graph[index] = [];
+    }
+    return true;
+};
+
+//tags: Apple, Uber, Zenifits, Yelp, Google, Amazon
