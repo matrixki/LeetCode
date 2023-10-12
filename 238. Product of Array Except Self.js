@@ -30,5 +30,35 @@ var productExceptSelf = function(nums) {
     return result;
 };
 
+// more straight forward
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var productExceptSelf = function(nums) {
+    let totalProduct = nums[0] === 0 ? 1 : nums[0], zeroCount = nums[0] === 0 ? 1: 0, result = [];
+    for(let i=1;i<nums.length;i++) {
+        const num = nums[i];
+        if (num===0) {
+            zeroCount++;
+            continue;
+        }
+        totalProduct *= num;
+    }
+    for (let num of nums) {
+        if (zeroCount > 0) {
+            if (zeroCount === 1) {
+                result.push( num === 0 ? totalProduct : 0 );
+            } else {
+                result.push(0);
+            }
+        } else {
+            result.push(totalProduct/num);
+        }
+    }
+    return result;
+};
+
 //tags: Lyft, Facebook, Amazon, Apple, Hulu, Google, Zenefits, Expedia, Yelp, Microsoft, Linkedin
 
