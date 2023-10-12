@@ -42,38 +42,38 @@ tags: Amazon, Microsoft, Oracle, Google, Apple, Facebook, Bloomberg, Walmart Lab
  * @param {number[][]} grid
  * @return {number}
  */
- var orangesRotting = function(grid) {
-    let rotten = [], level = 0, fresh = 0;
-    for(let i=0;i<grid.length;i++){
-        for(let j=0;j<grid[0].length;j++){
-            if(grid[i][j]===2){
-                rotten.push([i, j]);
-            }
-            if(grid[i][j]===1){
+var orangesRotting = function(grid) {
+    const m = grid.length, n = grid[0].length;
+    let fresh = 0, rottens = [], level = 0;
+    for (let i=0;i<m;i++) {
+        for (let j=0;j<n;j++) {
+            if (grid[i][j]===1) {
                 fresh++;
+            }
+            if (grid[i][j]===2) {
+                rottens.push([i, j]);
             }
         }
     }
-    if(fresh===0){ return 0; }
-    const directions = [ [-1, 0], [1, 0], [0, -1], [0, 1] ];
-    while(rotten.length>0){
+    if (fresh===0){return 0;}
+
+    const dirs = [[-1, 0], [1, 0], [0, -1], [0, 1]];
+    while (rottens.length > 0) {
+        const total = rottens.length;
         level++;
-        const size = rotten.length;
-        for(let i=0;i<size;i++){
-            const orange = rotten.shift();
-            for(let dir of directions){
-                let x = orange[0] + dir[0];
-                let y = orange[1] + dir[1];
-                if(x<0 || y<0 || x>=grid.length || y>=grid[0].length || grid[x][y]===0 || grid[x][y]===2){
-                    continue;
-                }
-                grid[x][y] = 2;
-                rotten.push([x,y]);
+        for (let i=0;i<total;i++) {
+            const rotten = rottens.shift();
+            for (let dir of dirs) {
+                const x = dir[0]+rotten[0];
+                const y = dir[1]+rotten[1];
+                if (x<0 || x>=m || y<0 || y>=n || grid[x][y] !== 1) { continue; }
+                rottens.push([x, y]);
                 fresh--;
+                grid[x][y] = 2;
             }
         }
     }
     return fresh === 0 ? level-1 : -1;
 };
 
-//tags: Amazon, Google
+//tags: Amazon, Google, Tiktok, Lyft
