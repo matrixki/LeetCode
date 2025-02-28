@@ -17,29 +17,30 @@ The vowels does not include the letter "y".
  * @return {string}
  */
 var reverseVowels = function(s) {
-    var start =0, end = s.length-1, left='', right='', sa = s.split('');
-    var dict = [ 'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U' ];
-    
-    while( start<end ){
-        if( dict.indexOf(sa[start]) !== -1 ){
-            left = sa[start];
+    let left = 0, right = s.length-1, strL = "", strR = "", strArr = s.split("");
+    const VOWELS = "aeiouAEIOU";
+    while (left <right) {
+        if( VOWELS.indexOf(strArr[left]) !== -1 ) {
+            strL = strArr[left];
+        } else {
+            left++;
         }
-        else{
-            start++;
+
+        if (VOWELS.indexOf(strArr[right]) !== -1) {
+            strR = strArr[right];
+        } else {
+            right--;
         }
-        if(dict.indexOf(sa[end]) !== -1 ){
-            right = sa[end];
-        }
-        else{
-            end--;
-        }
-        if( left !== '' && right !=='' ){
-            sa[start] = right;
-            sa[end] = left;
-            start++;
-            end--;
-            left = right = '';
+
+        if (strL !== "" && strR !== "") {
+            // swap
+            strArr[left] = strR;
+            strArr[right] = strL;
+            strL = "";
+            strR = "";
+            left++;
+            right--;
         }
     }
-    return sa.join('');
+    return strArr.join("");
 };
