@@ -15,16 +15,14 @@ Special thanks to @jianchao.li.fighter for adding this problem and creating all 
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var moveZeroes = function(nums) {
-    var pos = 0;
-    for( num of nums ){
-        if(num!==0){
-            nums[pos] = num;
-            pos++;
+    let pointer = 0;
+    for(let num of nums) {
+        if (num !== 0) {
+            nums[pointer++] = num;
         }
     }
-    while(pos<nums.length){
-        nums[pos] = 0;
-        pos++;
+    while(pointer<nums.length) {
+        nums[pointer++] = 0;
     }
 };
 
