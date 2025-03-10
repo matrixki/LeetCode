@@ -41,3 +41,19 @@ Follow up: Suppose there are lots of incoming s, say s1, s2, ..., sk where k >= 
     }
     return j === s.length
 };
+
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
+var isSubsequence = function(s, t) {
+    let pointerS = 0, pointerT = 0, count = 0;
+    for(let i=0;i<t.length;i++) {
+        if (t[i] === s[pointerS]) {
+            count++;
+            pointerS++;
+        }
+    }
+    return count === s.length;
+};
