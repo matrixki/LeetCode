@@ -20,22 +20,24 @@ Could you come up with an one-pass algorithm using only constant space?
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var sortColors = function(nums) {
-    var low = 0, high = nums.length-1, i=0;
-    while(low<high&&i<=high){
-        if( nums[i] === 0 ){
-            var temp = nums[i];
+    let low = 0, high = nums.length-1, i = 0;
+    while(low<high && i<=high) {
+        if (nums[i] === 0) {
+            // swap with low
+            const temp = nums[i];
             nums[i] = nums[low];
             nums[low] = temp;
-            low++;
             i++;
+            low++;
         }
-        else if( nums[i] === 2 ){
-            var temp = nums[i];
+        else if (nums[i] === 2) {
+            // swap with high
+            const temp = nums[i];
             nums[i] = nums[high];
             nums[high] = temp;
             high--;
         }
-        else{
+        else {
             i++;
         }
     }
