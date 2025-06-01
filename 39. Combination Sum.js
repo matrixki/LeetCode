@@ -43,4 +43,31 @@ var combinationSum = function(candidates, target) {
     return result;
 };
 
+/**
+ * @param {number[]} candidates
+ * @param {number} target
+ * @return {number[][]}
+ */
+var combinationSum = function(candidates, target) {
+    let result = [];
+    const backTracking = (idx, curr, total) => {
+        if (total===target) {
+            result.push(Array.from(curr));
+            return;
+        }
+
+        if (total > target || idx >= candidates.length) {
+            return;
+        }
+
+        curr.push(candidates[idx]);
+        backTracking(idx, curr, total+candidates[idx]);
+        curr.pop();
+        backTracking(idx+1, curr, total);
+    };
+    backTracking(0, [], 0);
+    return result;
+};
+
+
 //tags: Uber, Snapchat
