@@ -46,21 +46,22 @@ rotate the input matrix in-place such that it becomes:
  * @return {void} Do not return anything, modify matrix in-place instead.
  */
 var rotate = function(matrix) {
-    // reverse y-axis (up to down)
-    for( var i=0, len = matrix.length;i<Math.floor(len/2);i++ ){
-        var temp = matrix[i];
-        matrix[i] = matrix[len-i-1];
-        matrix[len-i-1] = temp;
-    }
-    // swap across symmetry
-    for( var i=0, leni=matrix.length;i<len;i++ ){
-        var curr = matrix[i];
-        for( var j=i+1, lenj = curr.length;j<lenj;j++ ){
-            var temp = curr[j];
-            curr[j] = matrix[j][i];
-            matrix[j][i] = temp;
-        }
-    }
+  // reverse the y-axis
+  const m = matrix.length;
+  const n = matrix[0].length;
+  for(let i=0;i<Math.floor(m/2);i++) {
+      const temp = matrix[i];
+      matrix[i] = matrix[m-1-i];
+      matrix[m-1-i] = temp;
+  }
+  // swap against the diagonal
+  for(let i=0;i<m;i++) {
+      for(let j=i+1;j<n;j++) {
+          const temp = matrix[i][j];
+          matrix[i][j] = matrix[j][i];
+          matrix[j][i] = temp;
+      }
+  }
 };
 
 //tags: Microsoft, Apple, Amazon
